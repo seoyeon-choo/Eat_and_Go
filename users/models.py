@@ -7,7 +7,7 @@ from django.dispatch import receiver
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    cust_id = models.IntegerField(max_length=128, null=True)
+    cust_id = models.IntegerField(null=True)
     name = models.CharField(max_length=128)
     nickname = models.CharField(max_length=128, default="덕우")
     phone = models.CharField(max_length=128)

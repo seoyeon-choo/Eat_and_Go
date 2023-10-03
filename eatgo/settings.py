@@ -37,11 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'rest_framework',
     'rest_framework.authtoken',
 
     'users',
     'matching',
+    'list',
+    'gift',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -79,6 +83,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ],
 }
+
+CART_ID = 'cart_in_session'
 
 
 # Database
