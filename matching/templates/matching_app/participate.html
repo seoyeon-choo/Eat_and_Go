@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Participate in Matching</title>
+</head>
+<body>
+    <h1>Participate in Matching</h1>
+    <p>Matching Room Details:</p>
+    <ul>
+        <li><strong>Time:</strong> {{ matching_room.time }}</li>
+        <li><strong>Place:</strong> {{ matching_room.place }}</li>
+        <li><strong>Max Participants:</strong> {{ matching_room.max_participants }}</li>
+        <li><strong>Creator Phone:</strong> {{ matching_room.creator_phone }}</li>
+    </ul>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Participate</button>
+    </form>
+</body>
+</html>

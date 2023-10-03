@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Matching Created</title>
+</head>
+<body>
+    <h1>Matching Created</h1>
+    <p>Matching room has been created successfully!</p>
+    <p>Room Details:</p>
+    <ul>
+        <li>Time: {{ matching_room.time }}</li>
+        <li>Place: {{ matching_room.place }}</li>
+        <li>Max Participants: {{ matching_room.max_participants }}</li>
+        <li>Creator Phone: {{ matching_room.creator_phone }}</li>
+    </ul>
+    <a href="{% url 'list_matching_rooms' %}">Back to List</a>
+</body>
+</html>
