@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>Eatgo 잇고 :: 학식 매칭 서비스</title>
+        <meta charset="UTF-8">
+        <meta name="viewprot" content="width=device-width", initial-scale="1.0">
+        <meta property="og:url" content="https://eatgo.co.kr">
+        <meta property="og:title" content="잇고 Eatgo">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="icon.jpg">
+        <meta property="og:description" content="학식 매칭 플랫폼">
+        <link rel="shortcut icon" href="이미지폴더/icon.png">
+
+
+        <style>
+
+            #header{
+                background-color: orange;
+                color: white;
+                text-align: center;
+                padding: 13px 0px 15px 0px; /* 위 아래 여백 설정*/
+                /* 13px 0px 15px 10px */
+                font-size: 1.5rem;
+                position: fixed;
+                top: 0; /* 화면 상단에 고정 */
+                width: 100%; /* 화면 너비만큼 헤더 확장*/
+                margin: 0;
+                list-style: none;
+                left: 0;
+            }
+            
+
+            #header a {
+                text-decoration: none;
+                columns: inherit;
+                color: white;
+                text-align: center;
+                display: block;
+                margin: 0 auto;
+            }
+
+
+            #footer{
+                text-align: center;
+            }
+
+            #contents{
+                text-align: center;
+                margin-top: 150px;
+                width: 100%;
+                color: white;
+            }
+
+
+            .dropdown_image {
+                width: 100%;
+                height: auto;
+                max-width: 20px;
+                display: block;
+                margin: 0 auto;
+                float: left;
+                overflow: hidden;
+            }
+            
+            .dropdown-button {
+                background: orange;
+                padding: 10px;
+                font-size: 15px; 
+                border: none;
+            }
+
+            .dropdown {
+                position: relative;
+                display: block;
+                float: left;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: orange;
+                color: black;
+                width: 300px;
+                height: auto;
+                padding: 0px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            }
+
+            .dropdwon-content a {
+                color: black;
+                padding: 100%;
+                margin: 0;
+                text-decoration: none;
+                display: block;
+                border-bottom: 1px solid #ddd
+            }
+
+            .dropdown-content a:hover {
+                background-color: #fccc8d;
+                width: 100%;
+            }
+            .dropdown:hover .dropdown-content {display: block;}
+            .dropdwon:hover .dropdown-button {background-color: orange}
+
+            .dropdown-content img {
+                width: 30%;
+                height: auto;
+            }
+
+            .container_for_header {
+                width: 100%;
+                height: inherit;
+                margin: 0 auto;
+                background: rgba(0,0,0,0);
+            }
+
+            /*메인 화면 컨테이너 크기*/
+            .container {
+                width: fit-content; 
+                height: auto; 
+                margin: 0 auto; 
+                text-align: center;
+                background: rgbd(0,0,0,0);
+            }
+
+            /*메인 화면 이미지 크기*/
+            .container img {
+                width: 400px;
+                height: auto;
+                /*max-width: 450px;*/
+                display: block;
+                margin: 0 auto;
+            }
+
+
+            .main_menu{
+                margin-top: 30px;
+            }
+
+            .main_matching{
+                margin-top: 30px;
+            }
+
+            .banner{
+                margin-top: 40px;
+            }
+
+            .main_ticket{
+                margin-top: 40px;
+            }
+        </style>
+    </head>
+
+
+    <body style="background-color: white;">
+        <div id="wrap">
+
+            <!-- header -->
+            <div id="header">  
+                <!-- 중앙 "잇고" 로고 -->
+                <div class="container_for_header">
+                    <div class="dropdown">
+                        <button class="dropdown-button"><a href=""><img class="dropdown_image" src="file:///C:/Users/mom99/Downloads/dropdown.png"></a></button>
+                        <div class="dropdown-content">
+                            <a href="#"><img src="이미지폴더/마이페이지.png"></a>
+                            <hr color="white">
+                            <a href="#"><img src="이미지폴더/메뉴.png"></a>
+                            <a href="#"><img src="이미지폴더/잇고.png"></a>
+                            <a href="#"><img src="이미지폴더/식권.png"></a>
+                            <a href="#"><img src="이미지폴더/주문내역.png"></a>
+                            <a href="#"><img src="이미지폴더/이벤트.png"></a>
+                            <a href="#"><img src="이미지폴더/문의.png"></a>
+                        </div>
+                    </div>
+                    
+                    <a href="file:///C:/Users/mom99/OneDrive/%EB%B0%94%ED%83%95%20%ED%99%94%EB%A9%B4/eatgo/main%20view.html"><strong>잇고</strong></a>
+                </div>
+            </div>
+    
+    
+            <!-- 메인 화면 구성 -->
+            <div id="contents">
+                <div class="container">
+
+                    <!-- 매칭 시스템 -->
+                    <div class="main_matching">
+                        <a href="#"><img src="이미지폴더/main_matching.png"></a>
+                    </div>
+
+                    <!-- 메뉴 보기 -->
+                    <div class="main_menu">
+                        <a href="#"><img src="이미지폴더/main_menu.png"></a>
+                    </div>
+                    
+    
+                    <!-- 배너 -->
+                    <div class="banner">
+                        <a href="#/"><img src="이미지폴더/banner.png"></a>
+                    </div>
+    
+                    <!-- 식권 구매 시스템 -->
+                    <div class="main_ticket">
+                        <a href="#"><img src="이미지폴더/main_ticket.png"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </body>
+</html>

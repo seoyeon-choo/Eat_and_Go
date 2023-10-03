@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>Eatgo 잇고 :: 식권구매</title>
+        <meta charset="UTF-8">
+        <meta name="viewprot" content="width=device-width, initial-scale=1.0">
+        <meta property="og:url" content="https://eatgo.co.kr">
+        <meta property="og:title" content="잇고 Eatgo">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="icon.jpg">
+        <meta property="og:description" content="학식 매칭 플랫폼">
+        <link rel="shortcut icon" href="이미지폴더/icon.png">
+
+
+        <style>
+            body {
+                margin: 0;
+            }
+
+            .container_for_header {
+                position: relative;
+            }
+
+            .text1 {
+                margin: 0 auto;
+                padding: 0;
+                margin-top: 60px;
+                font-size: 0.9rem;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                color: black;
+                width: 400px;
+                height: fit-content;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .text1 p {
+                text-align: left;
+            }
+            
+            .text1 hr {
+                width: 400px;
+                margin-bottom: 0;
+                margin-top: 0;
+                padding: 0;
+            }
+
+            .text2 {
+                margin: 0 auto;
+                padding: 0;
+                margin-bottom: 0;
+                height: fit-content;
+                text-align: center;
+            }
+
+            .text2 p {
+                text-align: center;
+                height: fit-content;
+                padding: 0;
+            }
+
+            .card-container {
+                list-style-type: none;
+                position: fixed;
+            }
+
+            .card-item {
+                display: inline-table;
+                cursor: pointer;
+                align-items: center;
+                padding: 0;
+                border: #ddd;
+                margin-right: 10px;
+                position: relative;
+            }
+
+            .card-item img {
+                width: 100%;
+                height: auto;
+                max-width: 150px;
+                margin: 2px;
+                position: relative;
+            }
+
+            .selected {
+                border: 2px solid orange;
+            }
+
+            .nav-container {
+                position: fixed;
+                display: flex;
+                flex-direction: row;
+                width: 400px;
+                margin: 0;
+                padding: 0;
+                background-color: whitesmoke;
+                list-style-type: none;
+                text-align: center;
+                justify-content: space-around;
+            }
+
+            .nav-item {
+                display: inline-block;
+                padding: 15px;
+                cursor: pointer;
+                text-align: center;
+                position: relative;
+            }
+
+            .nav-item a {
+                text-align: center;
+                text-decoration: 1px solid;
+                color: black;
+            }
+
+            #header{
+                background-color: orange;
+                color: white;
+                text-align: center;
+                padding: 13px 0px 15px 0px; /* 위 아래 여백 설정*/
+                /* 13px 0px 15px 10px */
+                font-size: 1.5rem;
+                position: fixed;
+                top: 0; /* 화면 상단에 고정 */
+                width: 100%; /* 화면 너비만큼 헤더 확장*/
+                margin: 0;
+                list-style: none;
+                left: 0;
+            }
+
+            #header a {
+                text-decoration: none;
+                columns: inherit;
+                color: white;
+                text-align: center;
+                display: block;
+                margin: 0 auto;
+            }
+
+            #contents{
+                text-align: center;
+                margin-top: 65px;
+                width: 100%;
+                height: fit-content;
+                display: block;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+            }
+
+            #contents hr {
+                width: 400px;
+                margin-bottom: 0;
+                padding-bottom: 0;
+                margin-left: auto;
+            }
+
+            
+
+            .dropdown_image {
+                width: 100%;
+                height: auto;
+                max-width: 20px;
+                display: block;
+                margin: 0 auto;
+                float: left;
+                overflow: hidden;
+            }
+            
+            .dropdown-button {
+                background: orange;
+                padding: 10px;
+                font-size: 15px; 
+                border: none;
+            }
+
+            .dropdown {
+                position: relative;
+                display: block;
+                float: left;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: orange;
+                color: black;
+                width: 300px;
+                height: auto;
+                padding: 0px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            }
+
+            .dropdwon-content a {
+                color: black;
+                padding: 100%;
+                margin: 0;
+                text-decoration: none;
+                display: block;
+                border-bottom: 1px solid #ddd
+            }
+
+            .dropdown-content a:hover {
+                background-color: #fccc8d;
+                width: 100%;
+            }
+            .dropdown:hover .dropdown-content {display: block;}
+            .dropdwon:hover .dropdown-button {background-color: orange}
+
+            .dropdown-content img {
+                width: 30%;
+                height: auto;
+            }
+
+             /*메인 화면 컨테이너 크기*/
+            .container {
+                width: 400px; 
+                height: 30px; 
+                margin: 0 auto;
+                margin-top: 20px;
+                text-align: center;
+                background: rgba(0,0,0,0.1);
+            }
+
+            #quantity {
+                width: 40px;
+                text-align: center;
+            }
+
+            #total {
+                font-size: 1.2em;
+                margin-top: 10px;
+            }
+
+            .quantity_btn {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background-color: white;
+                border: 1px solid black;
+                color: black;
+                font-size: 1em;
+                padding: 0;
+                margin: 0 5px;
+                cursor: pointer;
+                text-align: center;
+            }
+
+            #footer #quantity {
+                width: 40px;
+                text-align: center;
+                border: none;
+            }
+
+            #footer #total {
+                font-size: 1.2em;
+                margin-top: 10px;
+                color: black;
+            }
+
+            #footer {
+                bottom: 0px;
+                margin-top: 10px;
+                padding-top: 15px;
+                position: fixed;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 400px;
+                height: fit-content;
+                background-color: whitesmoke;
+                text-align: right;
+            }
+
+            .tic
+
+
+
+
+
+        
+        </style>
+    </head>
+
+
+    <body>
+        <div id="wrap">
+            <!-- header -->
+            <div id="header">  
+                <!-- 중앙 "잇고" 로고 -->
+                <div class="container_for_header">
+                    <div class="dropdown">
+                        <button class="dropdown-button"><a href=""><img class="dropdown_image" src="file:///C:/Users/mom99/Downloads/dropdown.png"></a></button>
+                        <div class="dropdown-content">
+                            <a href="#"><img src="이미지폴더/마이페이지.png"></a>
+                            <hr color="white">
+                            <a href="#"><img src="이미지폴더/메뉴.png"></a>
+                            <a href="#"><img src="이미지폴더/잇고.png"></a>
+                            <a href="#"><img src="이미지폴더/식권.png"></a>
+                            <a href="#"><img src="이미지폴더/주문내역.png"></a>
+                            <a href="#"><img src="이미지폴더/이벤트.png"></a>
+                            <a href="#"><img src="이미지폴더/문의.png"></a>
+                        </div>
+                    </div>
+                    
+                    <a href="file:///C:/Users/mom99/OneDrive/%EB%B0%94%ED%83%95%20%ED%99%94%EB%A9%B4/eatgo/main%20view.html"><strong>잇고</strong></a>
+                </div>
+            </div>
+
+
+            <!-- 메인 화면 구성 -->
+            <div id="contents">
+                <div class="container">
+                    <div class="text2">
+                        <p>식권 구매</p>
+                    </div>
+                    <hr color="orange">
+
+                    <nav>
+                        <ul class="nav-container">
+                            <li class="nav-item"><a href="#">홈</a></li>
+                            <li class="nav-item"><a href="#">구매함</a></li>
+                            <li class="nav-item"><a href="#">선물함</a></li>
+                        </ul>
+                    </nav>
+                    
+                    <div class="text1">
+                        <div class="hr2"><hr color="gray"></div>
+                        <p>카드를 골라 마음을 전해요<img src="이미지폴더/gift.png" alt="Gift Img" style="width: 15px;"></p>
+                    </div>
+
+                    <div class="card-container">
+                        <button type="button" class="card-item" onclick="selectCard(1)"><img src="이미지폴더/gift card1.png"></button>
+                        <button type="button" class="card-item" onclick="selectCard(2)"><img src="이미지폴더/gift card2.png"></button>
+                    </div>
+                    
+                </div>
+
+            </div>
+    
+            <!-- footer -->
+            
+            <div id="footer">
+                <div class="container_for_footer">
+                    <hr color="gray">
+
+                    <img class="ticket_img" src="이미지폴더/ticket.png">
+
+                    <!-- 티켓 수량 버튼 -->
+                    <button class="quantity_btn" onclick="decreaseQuantity()">-</button>
+                    <input type="text" id="quantity" value="1" readonly>
+                    <button class="quantity_btn" onclick="increaseQuantity()">+</button>
+
+                    <div id="total">Total: ₩<span id="totalAmount">6000</span></div>
+                </div>
+                <hr color="gray">
+
+            </div>
+
+        </div> 
+
+        <script>
+            function selectCard(cardNumber) {
+                var cards = document.querySelectorAll('.card-item');
+                cards.forEach(function(card) {
+                    card.classList.remove('selected');
+                });
+            
+
+                // Add the selected class to the clikced card
+                var selectedCard = document.querySelector('.card-item:nth-child(' + cardNumber + ')');
+                selectedCard.classList.add('selected');
+            }
+
+        
+            function updateTotal() {
+                const quantity = parseInt(document.getElementById('quantity').value);
+                const ticketPrice = 6000;
+                const totalAmount = quantity * ticketPrice;
+                document.getElementById('totalAmount').textContent = totalAmount;
+            }
+
+            function increaseQuantity() {
+                const quantityInput = document.getElementById('quantity');
+                let quantity = parseInt(quantityInput.value);
+                quantity++;
+                quantityInput.value = quantity;
+                updateTotal();
+            }
+
+            function decreaseQuantity() {
+                const quantityInput = document.getElementById('quantity');
+                let quantity = parseInt(quantityInput.value);
+                if (quantity > 1) {
+                    quantity--;
+                    quantityInput.value = quantity;
+                    updateTotal();
+                }
+            }
+        </script>
+
+
+    </body>
+</html>
