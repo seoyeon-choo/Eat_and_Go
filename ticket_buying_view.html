@@ -13,37 +13,21 @@
 
 
         <style>
-            body {
+            body, html {
                 margin: 0;
+                height: 100%;
+            }
+
+            .wrap {
+                position: relative;
+                min-height: 100%;
+                padding-bottom: 100px;
             }
 
             .container_for_header {
                 position: relative;
             }
 
-            .text1 {
-                margin: 0 auto;
-                padding: 0;
-                margin-top: 60px;
-                font-size: 0.9rem;
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                color: black;
-                width: 400px;
-                height: fit-content;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .text1 p {
-                text-align: left;
-            }
-            
-            .text1 hr {
-                width: 400px;
-                margin-bottom: 0;
-                margin-top: 0;
-                padding: 0;
-            }
 
             .text2 {
                 margin: 0 auto;
@@ -59,32 +43,6 @@
                 padding: 0;
             }
 
-            .card-container {
-                list-style-type: none;
-                position: fixed;
-            }
-
-            .card-item {
-                display: inline-table;
-                cursor: pointer;
-                align-items: center;
-                padding: 0;
-                border: #ddd;
-                margin-right: 10px;
-                position: relative;
-            }
-
-            .card-item img {
-                width: 100%;
-                height: auto;
-                max-width: 150px;
-                margin: 2px;
-                position: relative;
-            }
-
-            .selected {
-                border: 2px solid orange;
-            }
 
             .nav-container {
                 position: fixed;
@@ -126,6 +84,7 @@
                 margin: 0;
                 list-style: none;
                 left: 0;
+                z-index: 1000;
             }
 
             #header a {
@@ -137,16 +96,16 @@
                 margin: 0 auto;
             }
 
-            #contents{
+            #contents {
                 text-align: center;
                 margin-top: 65px;
                 width: 100%;
-                height: fit-content;
+                height: 100vh;
+                overflow-y: auto;
                 display: block;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-
             }
 
             #contents hr {
@@ -218,10 +177,10 @@
                 width: 400px; 
                 height: 30px; 
                 margin: 0 auto;
-                margin-top: 20px;
                 text-align: center;
                 background: rgba(0,0,0,0.1);
             }
+
 
             #quantity {
                 width: 40px;
@@ -266,7 +225,7 @@
             }
 
             #footer {
-                bottom: 0px;
+                bottom: 0;
                 margin-top: 10px;
                 padding-top: 15px;
                 position: fixed;
@@ -294,20 +253,38 @@
                 margin-bottom: 20px;
             }
 
-            .gift_btn,
-            .buy_btn {
+            .pay_btn {
                 width: 100%;
                 height: auto;
-                max-width: 200px;
+                max-width: 380px;
                 border: none;
                 cursor: pointer;
                 background: none;
+                margin-left: 10px;
             }
 
-            .gift_btn img,
-            .buy_btn img {
+            .pay_btn img {
                 width: 100%;
                 height: auto;
+            }
+
+            input,
+            textarea {
+                width: 100%;
+                padding: 8px;
+                margin: 6px 0;
+                box-sizing: border-box;
+            }
+
+            label {
+                margin-top: 25px;
+                font-weight: bold;
+                text-align: left;
+                display: block;
+            }
+
+            .sender {
+                padding-bottom: 300px;
             }
 
 
@@ -344,34 +321,43 @@
             <!-- 메인 화면 구성 -->
             <div id="contents">
                 <div class="container">
-                    <div class="text2">
+                    <div id="text2">
                         <p>식권 구매</p>
                     </div>
-                    <hr color="orange">
 
-                    <nav>
-                        <ul class="nav-container">
-                            <li class="nav-item"><a href="file:///C:/Users/mom99/OneDrive/%EB%B0%94%ED%83%95%20%ED%99%94%EB%A9%B4/eatgo/ticket.html#">
-                                홈</a></li>
-                            <li class="nav-item"><a href="#">구매함</a></li>
-                            <li class="nav-item"><a href="file:///C:/Users/mom99/OneDrive/%EB%B0%94%ED%83%95%20%ED%99%94%EB%A9%B4/eatgo/giftbox.html">
-                                선물함</a></li>
-                        </ul>
-                    </nav>
-                    
-                    <div class="text1">
-                        <div class="hr2"><hr color="gray"></div>
-                        <p>카드를 골라 마음을 전해요<img src="이미지폴더/gift.png" alt="Gift Img" style="width: 15px;"></p>
-                    </div>
 
-                    <div class="card-container">
-                        <button type="button" class="card-item" onclick="selectCard(1)"><img src="이미지폴더/gift card1.png"></button>
-                        <button type="button" class="card-item" onclick="selectCard(2)"><img src="이미지폴더/gift card2.png"></button>
-                    </div>
+                <nav>
+                    <ul class="nav-container" style="border-top: 2px solid orange;">
+                        <li class="nav-item"><a href="file:///C:/Users/mom99/OneDrive/%EB%B0%94%ED%83%95%20%ED%99%94%EB%A9%B4/eatgo/ticket.html#">
+                            홈</a></li>
+                        <li class="nav-item"><a href="#">구매함</a></li>
+                        <li class="nav-item"><a href="file:///C:/Users/mom99/OneDrive/%EB%B0%94%ED%83%95%20%ED%99%94%EB%A9%B4/eatgo/giftbox.html">
+                            선물함</a></li>                        
+                    </ul>
+                </nav>
                     
+                <img src="이미지폴더/hbd_card.png" style="width: 100%; height: auto; max-width:200px; display: block; margin: 90px 100px; margin-bottom: 40px;">
+                    
+                <!-- 식권 구매 입력정보란-->
+                <div class="recipient">
+                    <label for="recipient">받는 사람</label>
+                    <input type="text" id="recipientName" placeholder="이름">
+                    <input type="tel" id="phoneNumber" placeholder="전화번호">
                 </div>
-
+            
+                <!-- Add Message Input Field -->
+                <div class="message">
+                    <label for="message">메세지를 입력해주세요</label>
+                    <textarea id="message" rows="5" placeholder=""></textarea>
+                </div>
+            
+                <!-- Add Sender's Name Input Field -->
+                <div class="sender">
+                    <label for="sender">보내는 사람</label>
+                    <input type="text" id="senderName" placeholder="이름">
+                </div>
             </div>
+
     
             <!-- footer -->
             
@@ -390,8 +376,8 @@
                 </div>
 
                 <div class="button-container">
-                    <button class="gift_btn"><a href="file:///C:/Users/mom99/OneDrive/%EB%B0%94%ED%83%95%20%ED%99%94%EB%A9%B4/eatgo/ticket_buying_view.html"><img src="이미지폴더/선물하기버튼.png"></a></button>
-                    <button class="buy_btn"><a href="file:///C:/Users/mom99/OneDrive/%EB%B0%94%ED%83%95%20%ED%99%94%EB%A9%B4/eatgo/finish_view.html"><img src="이미지폴더/구매하기버튼.png"></a></button>
+                    <button class="pay_btn"><a href="file:///C:/Users/mom99/OneDrive/%EB%B0%94%ED%83%95%20%ED%99%94%EB%A9%B4/eatgo/finish_view.html">
+                        <img src="이미지폴더/결제하기버튼.png"></a></button>
 
                 </div>
 
@@ -402,18 +388,6 @@
         </div> 
 
         <script>
-            function selectCard(cardNumber) {
-                var cards = document.querySelectorAll('.card-item');
-                cards.forEach(function(card) {
-                    card.classList.remove('selected');
-                });
-            
-
-                // Add the selected class to the clikced card
-                var selectedCard = document.querySelector('.card-item:nth-child(' + cardNumber + ')');
-                selectedCard.classList.add('selected');
-            }
-
         
             function updateTotal() {
                 const quantity = parseInt(document.getElementById('quantity').value);

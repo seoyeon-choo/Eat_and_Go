@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko">
     <head>
-        <title>Eatgo 잇고 :: 학식 매칭 서비스</title>
+        <title>Eatgo 잇고 :: 식권구매</title>
         <meta charset="UTF-8">
-        <meta name="viewprot" content="width=device-width", initial-scale="1.0">
+        <meta name="viewprot" content="width=device-width, initial-scale=1.0">
         <meta property="og:url" content="https://eatgo.co.kr">
         <meta property="og:title" content="잇고 Eatgo">
         <meta property="og:type" content="website">
@@ -13,6 +13,63 @@
 
 
         <style>
+            body, html {
+                margin: 0;
+                height: 100%;
+            }
+
+            .wrap {
+                position: relative;
+                min-height: 100%;
+                padding-bottom: 100px;
+            }
+
+            .container_for_header {
+                position: relative;
+            }
+
+
+            .text2 {
+                margin: 0 auto;
+                padding: 0;
+                margin-bottom: 0;
+                height: fit-content;
+                text-align: center;
+            }
+
+            .text2 p {
+                text-align: center;
+                height: fit-content;
+                padding: 0;
+            }
+
+
+            .nav-container {
+                position: fixed;
+                display: flex;
+                flex-direction: row;
+                width: 400px;
+                margin: 0;
+                padding: 0;
+                background-color: whitesmoke;
+                list-style-type: none;
+                text-align: center;
+                justify-content: space-around;
+            }
+
+            .nav-item {
+                display: inline-block;
+                padding: 15px;
+                cursor: pointer;
+                text-align: center;
+                position: relative;
+            }
+
+            .nav-item a {
+                text-align: center;
+                text-decoration: 1px solid;
+                color: black;
+            }
 
             #header{
                 background-color: orange;
@@ -27,8 +84,8 @@
                 margin: 0;
                 list-style: none;
                 left: 0;
+                z-index: 1000;
             }
-            
 
             #header a {
                 text-decoration: none;
@@ -39,18 +96,26 @@
                 margin: 0 auto;
             }
 
-
-            #footer{
+            #contents {
                 text-align: center;
-            }
-
-            #contents{
-                text-align: center;
-                margin-top: 150px;
+                margin-top: 65px;
                 width: 100%;
-                color: white;
+                height: 100vh;
+                overflow-y: auto;
+                display: block;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
             }
 
+            #contents hr {
+                width: 400px;
+                margin-bottom: 0;
+                padding-bottom: 0;
+                margin-left: auto;
+            }
+
+            
 
             .dropdown_image {
                 width: 100%;
@@ -107,54 +172,24 @@
                 height: auto;
             }
 
-            .container_for_header {
-                width: 100%;
-                height: inherit;
-                margin: 0 auto;
-                background: rgba(0,0,0,0);
-            }
-
-            /*메인 화면 컨테이너 크기*/
+             /*메인 화면 컨테이너 크기*/
             .container {
-                width: fit-content; 
-                height: auto; 
-                margin: 0 auto; 
-                text-align: center;
-                background: rgbd(0,0,0,0);
-            }
-
-            /*메인 화면 이미지 크기*/
-            .container img {
-                width: 400px;
-                height: auto;
-                /*max-width: 450px;*/
-                display: block;
+                width: 400px; 
+                height: 30px; 
                 margin: 0 auto;
+                text-align: center;
+                background: rgba(0,0,0,0.1);
             }
 
 
-            .main_menu{
-                margin-top: 30px;
-            }
 
-            .main_matching{
-                margin-top: 30px;
-            }
 
-            .banner{
-                margin-top: 40px;
-            }
-
-            .main_ticket{
-                margin-top: 40px;
-            }
         </style>
     </head>
 
 
-    <body style="background-color: white;">
+    <body>
         <div id="wrap">
-
             <!-- header -->
             <div id="header">  
                 <!-- 중앙 "잇고" 로고 -->
@@ -174,38 +209,38 @@
                         </div>
                     </div>
                     
-                    <a href="file:///C:/Users/mom99/OneDrive/%EB%B0%94%ED%83%95%20%ED%99%94%EB%A9%B4/eatgo/main%20view.html"><strong>잇고</strong></a>
+                    <strong><a href="file:///C:/Users/mom99/OneDrive/%EB%B0%94%ED%83%95%20%ED%99%94%EB%A9%B4/eatgo/main%20view.html">잇고</a></strong>
                 </div>
             </div>
-    
-    
+
+
             <!-- 메인 화면 구성 -->
             <div id="contents">
                 <div class="container">
-
-                    <!-- 매칭 시스템 -->
-                    <div class="main_matching">
-                        <a href="#"><img src="이미지폴더/main_matching.png"></a>
+                    <div id="text2">
+                        <p>식권 구매</p>
                     </div>
 
-                    <!-- 메뉴 보기 -->
-                    <div class="main_menu">
-                        <a href="#"><img src="이미지폴더/main_menu.png"></a>
-                    </div>
+
+                <nav>
+                    <ul class="nav-container" style="border-top: 2px solid orange;">
+                        <li class="nav-item"><a href="file:///C:/Users/mom99/OneDrive/%EB%B0%94%ED%83%95%20%ED%99%94%EB%A9%B4/eatgo/ticket.html#">
+                            홈</a></li>
+                        <li class="nav-item"><a href="#">구매함</a></li>
+                        <li class="nav-item"><a href="file:///C:/Users/mom99/OneDrive/%EB%B0%94%ED%83%95%20%ED%99%94%EB%A9%B4/eatgo/giftbox.html">
+                            선물함</a></li>                        
+                    </ul>
+                </nav>
                     
-    
-                    <!-- 배너 -->
-                    <div class="banner">
-                        <a href="#/"><img src="이미지폴더/banner.png"></a>
-                    </div>
-    
-                    <!-- 식권 구매 시스템 -->
-                    <div class="main_ticket">
-                        <a href="file:///C:/Users/mom99/OneDrive/%EB%B0%94%ED%83%95%20%ED%99%94%EB%A9%B4/eatgo/ticket.html#"><img src="이미지폴더/main_ticket.png"></a>
-                    </div>
-                </div>
+                <img src="이미지폴더/식권기프트콘.png" style="width: 100%; height: auto; max-width:400px; display: block; margin: 60px 0;">
+                    
+
+
+                
+
             </div>
-        </div>
+
+        </div> 
 
 
 
