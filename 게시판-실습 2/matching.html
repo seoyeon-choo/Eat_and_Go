@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>매칭 팝업</title>
+    <style>
+        /* 팝업 스타일 */
+        .popup {
+            background-color: rgba(0, 0, 0, 0.7);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        /* 버튼 스타일 */
+        .popup-button {
+            background-color: orange;
+            color: white;
+            border: none;
+            padding: 9px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="popup">
+        <div class="popup-content">
+            <p>매칭하시겠습니까?</p>
+            <div class="popup-button" id="yesButton" onclick="acceptMatch()">예</div>
+            <button class="popup-button" id="noButton">아니요</button>
+        </div>
+    </div>
+
+    <script>
+       function closePopup() {
+    // 팝업을 닫고 3-1.html 페이지로 이동
+    window.close();
+    window.opener.location.href = '3-1.html';
+}
+
+const noButton = document.getElementById('noButton');
+noButton.addEventListener('click', () => {
+    // 아니오 버튼 클릭 시 팝업 닫기만 수행
+    closePopup();
+});
+// 팝업 페이지의 스크립트에서 acceptMatch 함수 정의
+function acceptMatch() {
+    // 팝업 페이지에서의 처리 로직 추가
+    alert('팝업 페이지의 매칭을 수락합니다.');
+
+    // 팝업을 닫음
+    window.close();
+}
+
+</script>
+
+       

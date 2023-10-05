@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메뉴 구매</title>
+    <style>
+
+    body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: orange;
+            color: white;
+            position: sticky;
+            top: 0;
+            display: flex;
+            align-items: center;
+            padding: 13px 10px;
+        }
+
+        .navbar-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+            width: 100%;
+        }
+        button {
+           
+           background-color: orange;
+           color: white;
+           border: none;
+           border-radius: 5px;
+           cursor: pointer;
+       }
+
+        #exit-button {
+            margin-right: auto; /* 오른쪽으로 이동 */
+        }
+        #exit-button img {
+    width: 15px; /* 이미지 너비 설정 */
+    height: 15px; /* 이미지 높이 설정 */
+}
+
+#order-image {
+            width: 130px; /* 이미지 너비 설정 */
+            height: 130px; /* 이미지 높이 설정 */
+            margin-top: 80px; /* 이미지를 상단바 아래로 이동 (원하는 위치에 조절) */
+            margin-left: auto; /* 이미지를 오른쪽으로 이동 (원하는 위치에 조절) */
+            margin-right: auto; /* 이미지를 왼쪽으로 이동 (원하는 위치에 조절) */
+            display: block; /* 이미지를 중앙에 배치 */
+        }
+        #completion-text {
+            text-align: center; /* 텍스트 가운데 정렬 */
+            font-size: 16px; /* 텍스트 크기 설정 */
+            margin-top: 40px; /* 텍스트와 이미지 간의 간격 조절 */
+        }
+
+        #order-complete {
+            font-size: 55px;
+            margin-top: 60px;
+            text-align: center;
+            font-weight: bold; /* 텍스트를 bold로 설정 */
+        }
+        </style>
+</head>
+<body>
+    <div class="navbar"style="height: 19px;">
+        <div class="navbar-buttons">
+            <button id="exit-button"><img src="left-arrow (1).png" alt="Close"></button>
+           
+        </div>
+        
+    </div>
+    <img id="order-image" src="order.png" alt="Custom Image">
+    <div id="completion-text">주문이 완료되었습니다</div>
+    <div id="order-complete">127</div>
+    <div id="completion-text">[분식] 치킨마요 </div>
+</body>
+</html>

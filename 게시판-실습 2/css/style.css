@@ -1,0 +1,501 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 10px;
+}
+
+ul, li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.board_wrap {
+    width: 1000px;
+    margin: 60px auto;
+}
+
+.board_title, .board_title2 {
+    margin-bottom: 0px;
+}
+
+.board_title strong {
+    font-size: 3rem;
+}
+
+.board_title p {
+    display: block;
+    text-align: center; /* 중앙 정렬 */
+    margin: 50px 0; /* 위아래 여백 조절 */
+}
+
+
+
+
+
+
+.board_list > div > div {
+    display: inline-block;
+    padding: 15px 0;
+    
+    font-size: 10px;
+}
+
+.board_list > div.top > div {
+    font-weight: 600;
+}
+
+.board_list .num {
+    width: 10%;
+}
+
+.board_list .title {
+    text-align: left;
+}
+
+.board_list .top .title {
+    
+    color: #333;
+}
+
+.board_list .writer {
+    width: 10%;
+}
+
+.board_list .date {
+    width: 10%;
+}
+
+.board_list .count {
+    width: 10%;
+}
+
+.board_page {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0;
+}
+
+.board_page a {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-left: 0;
+    line-height: 100%;
+}
+
+.board_page a.bt {
+    padding-top: 10px;
+    font-size: 1.2rem;
+    letter-spacing: -1px;
+}
+
+.board_page a.num {
+    padding-top: 9px;
+    font-size: 1.4rem;
+}
+
+.board_page a.num.on {
+    border-color: orange;
+    background: orange;
+    color: #fff;
+}
+
+.board_page a:first-child {
+    border-left: 1px solid #ddd;
+}
+
+.board_view {
+    width: 100%;
+    border-top: 2px solid orange;
+}
+
+.board_view .title {
+    padding: 20px 15px;
+    border-bottom: 1px dashed #ddd;
+    font-size: 2rem;
+}
+
+.board_view .info {
+    padding: 15px;
+    border-bottom: 1px solid #999;
+    font-size: 0;
+}
+
+.board_view .info dl {
+    position: relative;
+    display: inline-block;
+    padding: 0 20px;
+}
+
+.board_view .info dl:first-child {
+    padding-left: 0;
+}
+
+.board_view .info dl::before {
+    content: "";
+    position: absolute;
+    top: 1px;
+    left: 0;
+    display: block;
+    width: 1px;
+    height: 13px;
+    background: #ddd;
+}
+
+.board_view .info dl:first-child::before {
+    display: none;
+}
+
+.board_view .info dl dt,
+.board_view .info dl dd {
+    display: inline-block;
+    font-size: 1.4rem;
+}
+
+.board_view .info dl dt {
+
+}
+
+.board_view .info dl dd {
+    margin-left: 10px;
+    color: #777;
+}
+
+.board_view .cont {
+    padding: 15px;
+    border-bottom: 1px solid orange;
+    line-height: 160%;
+    font-size: 1.4rem;
+}
+
+.board_write,.board_write2 {
+    border-top: 2px solid orange;
+}
+
+.board_write .title,.board_write .title2,
+.board_write .info {
+    padding: 1px;
+}
+
+.board_write .info,.board_write2 .info {
+    border-top: 1px dashed #ddd;
+    border-bottom: 1px solid orange;
+    font-size: 0;
+}
+
+.board_write .title dl {
+    font-size: 0;
+}
+.board_write2 .title2 dl {
+    font-size: 0;
+}
+
+.board_write .info dl {
+    display: inline-block;
+    width: 50%;
+    vertical-align: middle;
+}
+
+.board_write .title dt,
+.board_write .title dd,
+.board_write .info dt,
+.board_write .info dd {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1.4rem;
+}
+
+.board_write .title dt,
+.board_write .info dt {
+    width: 100px;
+}
+
+.board_write .title dd {
+    width: calc(100% - 100px);
+}
+
+.board_write .title input[type="text"],
+.board_write .info input[type="text"] {
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.board_write .title input[type="text"], .board_write .cont textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #ccc}
+
+.board_write .cont {
+    border-bottom: 1px solid orange;
+}
+
+.board_write .cont textarea {
+    display: block;
+    width: 100%;
+    height: 300px;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 0;
+    resize: vertical;
+    border: none;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+
+/* 버튼 스타일 */
+.post_buttons {
+    display: flex; /* 버튼을 가로로 정렬 */
+    justify-content: space-between; /* 버튼 간격을 최대로 설정 */
+   
+}
+
+.join_button, .chat_button {
+    background-color: orange; /* 버튼 배경색 */
+    color: white; /* 버튼 텍스트 색상 */
+    font-size: 10px; /* 버튼 텍스트 크기 */
+    padding: 5px 10px; /* 버튼 내부 패딩 설정 */
+    border: none; /* 버튼 테두리 제거 */
+    border-radius: 20px; /* 버튼 둥근 모서리 */
+    cursor: pointer; /* 포인터 커서로 변경하여 클릭 가능한 상태 표시 */
+    text-decoration: none;
+    margin-top: 10px;
+    
+}
+
+.join_button:hover, .chat_button:hover {
+    background-color: #FDDBAE; /* 버튼 호버 시 배경색 변경 */
+}
+.join_button {
+    margin-right: 5px; /* "참가하기" 버튼과 "채팅하기" 버튼 사이의 간격 조절 */
+}
+.post {
+    display: flex; /* 자식 요소를 가로로 정렬 */
+    justify-content: space-between; /* 자식 요소 간격을 최대로 설정 */
+    align-items: center; /* 자식 요소를 수직 가운데 정렬 */
+}
+
+/* 추가된 CSS 스타일 */
+.header {
+    background-color: orange; /* 오렌지색 배경 */
+    color: white; /* 텍스트 색상 */
+       text-align: center; /* 텍스트 가운데 정렬 */
+    padding: 13px 0; /* 위아래 여백 설정 */
+       font-size: 1.5rem; /* 글꼴 크기 설정 */
+       position: fixed;
+       top: 0; /* 화면 상단에 고정 */
+    width: 100%; /* 화면 너비만큼 헤더 확장 */
+   }
+   /* 제목 입력 필드 스타일 */
+.board_write .title input[type="text"] {
+    border-bottom: 1px solid #ccc;}
+ .board_write2 .title2 input[type="text"] {
+        border-bottom: 1px solid #ccc;}
+    /* 이미지 스타일 */
+.image {
+    display: inline-block; /* 이미지를 인라인 블록 요소로 설정하여 수평 정렬 */
+    vertical-align: middle; /* 이미지를 수직 가운데 정렬 */
+    width: 30px; /* 이미지 너비 30px로 설정 */
+    height: 30px; /* 이미지 높이 30px로 설정 */
+    margin-right: 10px; /* 이미지 오른쪽 여백 설정 */
+}
+
+
+/* 입력 필드 스타일 */
+.people-input {
+    width: calc(100% - 40px); /* 입력 필드의 너비를 이미지 너비를 고려하여 설정 */
+    vertical-align: middle; /* 입력 필드를 수직 가운데 정렬 */
+}
+/* 인원 선택 버튼 스타일 */
+.people select {
+    width: 50px; /* 인원 선택 버튼의 너비를 50px로 설정하여 크기를 줄임 */
+    padding: 10px; /* 입력 필드 내 여백 설정 */
+    margin-bottom: 10px; /* 아래 여백 추가 */
+    border: none; /* 입력 필드 선 제거 */
+    outline: none; /* 포커스 시 테두리 제거 */
+    border-bottom: 1px solid #ccc; /* 하단 실선 추가 */
+    vertical-align: middle; /* 입력 필드를 수직 가운데 정렬 */
+}
+/* 장소 입력 텍스트 박스 스타일 */
+/* 장소 입력 텍스트 박스 스타일 */
+.map-input {
+    width: calc(50% - 45px); /* 입력 박스의 너비를 반으로 줄입니다. 여백을 고려해 조절하였습니다. */
+    padding: 10px; /* 입력 필드 내 여백 설정 */
+    margin-bottom: 10px; /* 아래 여백 추가 */
+    border: none; /* 입력 필드 선 제거 */
+    outline: none; /* 포커스 시 테두리 제거 */
+   
+    vertical-align: middle; /* 입력 필드를 수직 가운데 정렬합니다. */
+
+    /* 장소 입력 바로 아래의 회색 선을 제거 */
+.map-input::before {
+    display: none;
+}
+
+}
+
+/* 등록 버튼 스타일 */
+a.on {
+    background-color: orange;
+            color: white;
+            font-size: 12px;
+            padding: 10px 10px; /* 버튼 내부 패딩 설정 */
+            text-decoration: none; /* 링크 텍스트에 밑줄 제거 */
+            border-radius: 60px;
+            display: block; /* 블록 레벨 요소로 변경하여 중앙에 배치 */
+            margin: 10px auto; /* 가운데 정렬을 위한 여백 설정 */
+            width: 40px; /* 버튼의 너비를 조정하여 중앙으로 이동 */
+            text-align: center; /* 텍스트를 가운데 정렬 */
+}
+
+/* 등록 버튼 호버 시 스타일 (선택사항) */
+a.on:hover {
+    background-color: #FDDBAE; /* 버튼 호버 시 배경색 변경 */
+}
+
+
+
+/* 팝업 모달 스타일 */
+
+
+
+
+
+
+    
+.button_container {
+    margin-top: auto; 
+    justify-content: space-between;
+    
+}
+.post {
+    margin-bottom: 10px; /* 글들 사이의 간격을 조절합니다. */
+    background-color: #e4e4e4;
+    border-radius: 20px;
+}
+ .date2, .people2, .map2 {
+    display: inline-block;
+    flex-grow: 1; /* 자동으로 공간을 채우도록 확장 */
+    margin: 0; /* 기본 마진 제거 */
+    padding: 5px; /* 원하는 여백 추가 */
+    
+}
+.image2 {
+    width: 16px; /* 이미지의 너비 설정 */
+    height: 16px; /* 이미지의 높이 설정 */}
+
+ .post_content {
+    display: flex; /* 자식 요소를 가로로 나열하기 위해 flex 컨테이너로 설정 */
+    flex-direction: column; /* 자식 요소를 가로로 나열 (기본값) */
+    align-items: flex-start; /* 자식 요소를 수직으로 가운데 정렬 */
+    justify-content: space-between; /* 자식 요소 사이에 공간을 넣어 정렬 */
+    }
+
+ 
+ .on {
+        background-color: orange; /* 버튼 배경색 */
+        color: white; /* 버튼 텍스트 색상 */
+        font-size: 13px; /* 버튼 텍스트 크기 */
+        padding: 6px 15px; /* 버튼 내부 패딩 설정 */
+        border: none; /* 버튼 테두리 제거 */
+        border-radius: 20px; /* 버튼 둥근 모서리 */
+        cursor: pointer; /* 포인터 커서로 변경하여 클릭 가능한 상태 표시 */
+        text-decoration: none;
+        text-align: center;
+        display: block;
+        margin: 10px auto; /* 수직 가운데 정렬 및 가로 가운데 정렬 */
+    }
+    .on2 {
+        background-color: orange; /* 버튼 배경색 */
+        color: white; /* 버튼 텍스트 색상 */
+        font-size: 11px; /* 버튼 텍스트 크기 */
+        padding: 8px 13px; /* 버튼 내부 패딩 설정 */
+        border: none; /* 버튼 테두리 제거 */
+        border-radius: 20px; /* 버튼 둥근 모서리 */
+        cursor: pointer; /* 포인터 커서로 변경하여 클릭 가능한 상태 표시 */
+        text-decoration: none;
+        text-align: center;
+        display: block;
+        margin: 10px auto; /* 수직 가운데 정렬 및 가로 가운데 정렬 */
+    }
+    
+
+    
+.on:hover {
+        background-color: #FDDBAE;
+    }
+    
+
+
+    /* 팝업 스타일 */
+    
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1;
+    }
+
+    
+    .modal-content {
+        background-color: white;
+        margin: 20% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        text-align: center;
+    }
+
+    .close-button {
+        background-color: #f1f1f1;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    /* 예 아니요 버튼 스타일 */
+    .popup-buttons button {
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .popup-buttons button:hover {
+        background-color: #0056b3;
+    }
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        margin-top: 60px; /* 상단바 아래로 내려가도록 조정 */
+        
+    }

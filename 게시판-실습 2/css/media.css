@@ -1,0 +1,105 @@
+@media (max-width: 1000px) {
+    .board_wrap {
+        width: 100%;
+        min-width: 320px;
+       
+        box-sizing: border-box;
+    }
+
+    .board_list .num,
+    .board_list .writer,
+    .board_list .count {
+        display: none;
+    }
+
+    .board_list .date {
+        width: 40%;
+    }
+
+    
+
+    .board_list .top .title {
+        text-indent: 0;
+    }
+
+    .board_page a {
+        width: 26px;
+        height: 26px;
+    }
+
+    .board_page a.bt {
+        padding-top: 7px;
+    }
+    
+    .board_page a.num {
+        padding-top: 6px;
+    }
+
+    .board_view .info dl {
+        width: 50%;
+        padding: 0;
+    }
+
+    .board_view .info dl:nth-child(-n+2) {
+        margin-bottom: 5px;
+    }
+
+    .board_view .info dl::before {
+        display: none;
+    }
+
+    .board_view .info dl dt,
+    .board_view .info dl dd {
+        font-size: 1.2rem;
+    }
+
+    .board_write .info dl {
+        width: 49%;
+    }
+
+    .board_write .info dl:first-child {
+        margin-right: 2%;
+    }
+
+    .board_write .title dt,
+    .board_write .info dt {
+        display: none;
+    }
+
+    .board_write .title dd,
+    .board_write .info dd {
+        width: 100%;
+    }
+
+    /* 제목 입력 필드 스타일 수정 */
+    .board_write .title input[type="text"],
+    .board_write .cont textarea {
+        width: 100%; /* 입력 필드 너비 100%로 설정 */
+        padding: 10px; /* 입력 필드 내 여백 설정 */
+        margin-bottom: 10px; /* 아래 여백 추가 */
+        border: none; /* 입력 필드 선 제거 */
+        outline: none; /* 포커스 시 테두리 제거 */
+        border-bottom: 1px solid #ccc; /* 하단 실선 추가 */
+        cols: 100; /* 100글자로 제한 */
+        
+    }
+}
+    
+
+
+/* 정보 입력 필드 스타일 수정 */
+.board_write .info input[type="text"],
+.board_write .info input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px; /* 아래 여백 추가 */
+    max-width: 1000px; /* 최대 너비를 1000px로 제한 */
+}
+.board_write_wrap {
+    margin-top: 50px; /* 상단바 아래 여백 조절 */
+}
+.title, .cont {
+  
+    margin-bottom: 10px; /* 아래 여백 추가 */
+    max-width: 1000px; /* 최대 너비를 1000px로 제한 */
+}
