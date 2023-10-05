@@ -1,17 +1,48 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
 from .models import MatchingRoom
 from .models import Participant
 from .forms import MatchingRoomForm, ParticipantForm
+from django.views.generic import ListView
+from .models import Images
+
+class HomePageView(ListView):
+    model = Images
+    template_name = "main_home.html"
+
+def index(request):
+    list_matching_rooms = MatchingRoom.objects.order_by('-create_date')
+    context = {'list_matching_rooms': list_matching_rooms}
+    return render(request, 'matching_app/list_matching_rooms.html', context)
+
+def detail(request, matching_room_id):
+    matching_room = get_object_or_404(MatchingRoom, pk=matching_room_id)
+    context = {'matching_room': matching_room}
+    return render(request, 'matching/list_matching_rooms.html', context)
 
 def create_matching_room(request):
     if request.method == 'POST':
         form = MatchingRoomForm(request.POST)
         if form.is_valid():
-            matching_room = form.save()
+            matching_room = form.save(commit=False)
+            # matching_room.create_date = timezone.now()
+            # matching_room.save()
             return render(request, 'matching_app/matching_created.html', {'matching_room': matching_room})
+            #return redirect('matching_app:index')
     else:
         form = MatchingRoomForm()
-    return render(request, 'matching_app/create_matching_room.html', {'form': form})
+    context = {'form': form}
+    return render(request, 'matching_app/create_matching_room.html', context)
+
+# def create_matching_room(request):
+#     if request.method == 'POST':
+#         form = MatchingRoomForm(request.POST)
+#         if form.is_valid():
+#             matching_room = form.save()
+#             return render(request, 'matching_app/matching_created.html', {'matching_room': matching_room})
+#     else:
+#         form = MatchingRoomForm()
+#     return render(request, 'matching_app/create_matching_room.html', {'form': form})
 
 def list_matching_rooms(request):
     matching_rooms = MatchingRoom.objects.filter(is_matching=True)

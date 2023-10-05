@@ -6,23 +6,31 @@
 </head>
 <body>
     <h1>List Matching Rooms</h1>
-    <ul>
-        {% for matching_room in matching_rooms %}
-            <li>
-                <strong>Time:</strong> {{ matching_room.time }}<br>
-                <strong>Place:</strong> {{ matching_room.place }}<br>
-                <strong>Max Participants:</strong> {{ matching_room.max_participants }}<br>
-                <strong>Creator Phone:</strong> {{ matching_room.creator_phone }}<br>
-                {% if matching_room.is_matching %}
-                    <a href="{% url 'participate' matching_room.id %}">Participate</a>
-                {% else %}
-                    <span>Matching Completed</span>
-                {% endif %}
-            </li>
-        {% empty %}
+        <ul>
+            {% for matching_room in list_matching_rooms %}
+                <li>
+                    <strong>Subject:</strong> {{ matching_room.subject }}<br>
+                    <strong>Content:</strong> {{ matching_room.content }}<br>
+                    <strong>Time:</strong> {{ matching_room.time }}<br>
+                    <strong>Place:</strong> {{ matching_room.place }}<br>
+                    <strong>Max Participants:</strong> {{ matching_room.max_participants }}<br>
+                    <strong>Creator Phone:</strong> {{ matching_room.creator_phone }}<br>
+                    {% if matching_room.is_matching %}
+                        <a href="{% url 'participate' matching_room.id %}">Participate</a>
+                    {% else %}
+                        <span>Matching Completed</span>
+                    {% endif %}
+                </li>
+            {% empty %}
             <li>No matching rooms available.</li>
-        {% endfor %}
-    </ul>
+            {% endfor %}
+        </ul>
+
     <a href="{% url 'create_matching_room' %}">Create New Room</a>
+
+
+
 </body>
 </html>
+
+
