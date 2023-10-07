@@ -1,3 +1,19 @@
 from django.db import models
+from users.models import User
 
-# Create your models here.
+class Gift(models.Model):
+    order_id = models.IntegerField()  # 주문번호 (구매 구현 시 ForeignKey로 연결)
+    giver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='gifts_given')  # 선물한 사람 id
+    taker = models.CharField(max_length=255)  # 선물 받은 사람 전화번호
+    check = models.CharField(max_length=1, blank=True, null=True)
+    create_dt = models.DateTimeField('CREATE DT', auto_now_add=True)
+    update_dt = models.DateTimeField('UPDATE DT', auto_now=True)
+
+    def save(self, *args, **kwargs):
+        try:
+            # User 모델에서 전화번호가 taker 필드 값과 일치하는 사용자를 가져옵니다.
+            user = User.objects.get(phone=self.taker)
+            self.check = 'Y'
+        except User.DoesNotExist:
+            self.check = 'N'
+        super(Gift, self).save(*args, **kwargs)
