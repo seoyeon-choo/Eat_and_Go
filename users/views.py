@@ -1,44 +1,40 @@
-from rest_framework import generics, status
-from rest_framework.response import Response
-from django.contrib.auth.models import User
+from django.http import JsonResponse
+from django.shortcuts import render
 
-from .serializers import RegisterSerializer, LoginSerializer, ProfileSerializer
-from .models import Profile
+from .forms import RegisterForm
+from .models import User
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
 
+# Create your views here.
+def signup(request):
+    register_form = RegisterForm(request.POST)
+    context = {'form':register_form}
+    if request.method == 'POST':
+        if register_form.is_valid():
+            user = User.objects.create_user(
+                username=request.POST['username'],
+                password=request.POST['password'],
+                nickname=request.POST['nickname'],
+                phone=request.POST['phone'],
+            )
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            return redirect('/')
+        return render(request, 'registration/signup.html', context)
+    else:
+        context['form'] = register_form
+        return render(request, 'registration/signup.html', context)
 
-class RegisterView(generics.CreateAPIView):
-    queryset = User.objects.all()
-    serializer_class = RegisterSerializer
-
-
-class LoginView(generics.GenericAPIView):
-    serializer_class = LoginSerializer
-
-    def post(self, request):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        token = serializer.validated_data
-        return Response({"token": token.key}, status=status.HTTP_200_OK)
-    
-
-class ProfileView(generics.GenericAPIView):
-    serializer_class = ProfileSerializer
-
-    def patch(self, request):
-        profile = Profile.objects.get(user=request.user)
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        data = serializer.validated_data
-        profile.nickname = data['cust_id']
-        profile.position = data['name']
-        profile.subjects = data['nickname']
-        if request.data['phone']:
-            profile.image = request.data['image']
-        profile.save()
-        return Response({"result": "ok"},
-                        status=status.HTTP_206_PARTIAL_CONTENT)
-
-    def get(self, request):
-        profile = Profile.objects.get(user=request.user)
-        serializer = self.get_serializer(profile)
-        return Response(serializer.data)
+def id_overlap_check(request):
+    username = request.GET.get('username')
+    try:
+        user=User.objects.get(username=username)
+    except:
+        user = None
+    if user is None:
+        overlap = 'pass'
+    else:
+        overlap = "fail"
+    context = {'overlap':overlap}
+    return JsonResponse(context)
