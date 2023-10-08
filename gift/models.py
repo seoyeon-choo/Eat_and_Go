@@ -2,8 +2,7 @@ from django.db import models
 from users.models import User
 
 class Gift(models.Model):
-    order_id = models.IntegerField()  # 주문번호 (구매 구현 시 ForeignKey로 연결)
-    giver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='gifts_given')  # 선물한 사람 id
+    giver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='gifts_given', null=True)  # 선물한 사람 id
     taker = models.CharField(max_length=255)  # 선물 받은 사람 전화번호
     check = models.CharField(max_length=1, blank=True, null=True)
     create_dt = models.DateTimeField('CREATE DT', auto_now_add=True)
