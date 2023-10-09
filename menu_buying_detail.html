@@ -13,20 +13,41 @@
 
 
         <style>
-            body, html {
+            body {
                 margin: 0;
-                height: 100%;
-            }
-
-            .wrap {
-                position: relative;
-                min-height: 100%;
-                padding-bottom: 100px;
             }
 
             .container_for_header {
                 position: relative;
             }
+
+            .text1 {
+                margin: 0 auto;
+                padding: 0;
+                margin-top: 60px;
+                font-size: 0.9rem;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                color: black;
+                width: 400px;
+                height: fit-content;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .text1 p {
+                padding-top: 20px;
+                text-align: left;
+            }
+            
+
+
+            .text2 p {
+                text-align: center;
+                height: fit-content;
+                padding-top: 0;
+                padding-top: 10px;
+            }
+
 
 
             #header{
@@ -42,7 +63,6 @@
                 margin: 0;
                 list-style: none;
                 left: 0;
-                z-index: 1000;
             }
 
             #header a {
@@ -54,34 +74,20 @@
                 margin: 0 auto;
             }
 
-            #contents {
+            #contents{
                 text-align: center;
-                margin-top: 0;
+                margin-top: 65px;
                 width: 100%;
-                height: 100vh;
-                overflow-y: auto;
-                display: flex;
+                height: fit-content;
+                display: block;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-            }
 
-            #contents img {
-                width: 100%;
-                height: auto;
-                max-width: 200px;
-                margin-bottom: 0;
-                padding-bottom: 0;
-            }
-
-            #finish_text {
-                margin-top: 30px;
-                color: black;
-                font-size: large;
             }
 
             
-
+            /*드롭다운*/
             .dropdown_image {
                 width: 100%;
                 height: auto;
@@ -137,18 +143,71 @@
                 height: auto;
             }
 
-             /*메인 화면 컨테이너 크기*/
+             /*컨테이너 크기*/
             .container {
                 width: 400px; 
                 height: 30px; 
                 margin: 0 auto;
                 text-align: center;
+                padding-bottom: 10px;
                 background: rgba(0,0,0,0.1);
             }
 
 
 
+            #footer {
+                bottom: 0px;
+                margin-top: 10px;
+                padding-top: 15px;
+                position: fixed;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 400px;
+                height: fit-content;
+                background-color: whitesmoke;
+                text-align: right;
+            }
 
+
+
+            .button-container {
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+
+            
+            .add_btn {
+                width: 100%;
+                height: auto;
+                max-width: 400px;
+                border: none;
+                cursor: pointer;
+                background: none;
+                margin-right: 50px;
+            }
+
+            .add_btn img {
+                width: 100%;
+                height: auto;
+            }
+
+            .image1 img,
+            .image2 img {
+                width: 100%;
+                height: auto;
+                max-width: 400px;
+                margin: 10px auto;
+                display: block;
+            }
+
+            .review_button img {
+                width: 100%;
+                height: auto;
+                max-width: 400px;
+                margin: 20px 20px;
+            }
+
+          
         </style>
     </head>
 
@@ -175,21 +234,53 @@
                         </div>
                     </div>
                     
-                    <strong><a href="file:///C:/Users/mom99/OneDrive/%EB%B0%94%ED%83%95%20%ED%99%94%EB%A9%B4/eatgo/main%20view.html">잇고</a></strong>
+                    <a href="file:///C:/Users/mom99/OneDrive/%EB%B0%94%ED%83%95%20%ED%99%94%EB%A9%B4/eatgo/main%20view.html">
+                        <strong>잇고</strong></a>
                 </div>
             </div>
-
+의
 
             <!-- 메인 화면 구성 -->
             <div id="contents">
-                <img src="이미지폴더/결제완료.png">    
-                
-                <div id="finish_text">
-                    결제가 완료되었습니다
+                <div class="container" style="border-bottom: solid 2px orange;">
+                    <div class="text2">
+                        <p>메뉴 구매</p>
+                    </div>
+
                 </div>
+
+                <div class="image1">
+                    <img src="이미지폴더/디테일1.png">
+                </div>
+                
+               
+                <div class="review_button">
+                    <a href="#"><img src="이미지폴더/리뷰보기버튼.png"></a>
+                </div>
+
+                <div class="image2">
+                    <img src="이미지폴더/디테일2.png">
+                </div>
+
+            </div>
+    
+            <!-- footer -->
+            
+            <div id="footer" style="border-top: solid 2px gray;">
+
+               
+                <div class="button-container">
+                    <button class="add_btn"><a href="#"><img src="이미지폴더/6000원 담기 버튼.png"></a></button>
+
+                </div>
+
+                
+
             </div>
 
         </div> 
+
+
 
 
     </body>

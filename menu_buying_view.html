@@ -15,7 +15,7 @@
         <style>
             body, html {
                 margin: 0;
-                height: 100%;
+                height: fit-content;
             }
 
             .wrap {
@@ -27,6 +27,15 @@
             .container_for_header {
                 position: relative;
             }
+
+            p {
+                text-align: center;
+                height: fit-content;
+                padding-top: 10px;
+                margin-top: 0;
+            }
+
+
 
 
             #header{
@@ -56,32 +65,25 @@
 
             #contents {
                 text-align: center;
-                margin-top: 0;
+                margin-top: 65px;
                 width: 100%;
-                height: 100vh;
+                height: fit-content;
                 overflow-y: auto;
-                display: flex;
+                display: block;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
             }
 
-            #contents img {
-                width: 100%;
-                height: auto;
-                max-width: 200px;
+            #contents hr {
+                width: 400px;
                 margin-bottom: 0;
                 padding-bottom: 0;
-            }
-
-            #finish_text {
-                margin-top: 30px;
-                color: black;
-                font-size: large;
+                margin-left: auto;
             }
 
             
-
+            /*드롭다운*/
             .dropdown_image {
                 width: 100%;
                 height: auto;
@@ -137,14 +139,57 @@
                 height: auto;
             }
 
+            /*검색창*/
+            #search-form {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 50px;
+            }
+
+            #search-input {
+                padding: 5px;
+                width: 200px;
+                font-size: 12px;
+                border-radius: 40em;
+            }
+
+            #search-button {
+                padding: 5px;
+                background-color: white;
+                color: black;
+                border: solid 1px black;
+                border-radius: 2em;
+                cursor: pointer;
+                font-size: 5px;
+                margin-left: 5px;
+            }
+
              /*메인 화면 컨테이너 크기*/
             .container {
                 width: 400px; 
-                height: 30px; 
+                height: 40px; 
                 margin: 0 auto;
+                align-items: center;
                 text-align: center;
                 background: rgba(0,0,0,0.1);
             }
+
+            /*치킨마요*/
+            .board img {
+                width: 100%;
+                height: auto;
+                max-width: 150px;
+                margin: 60px 20px;
+            }
+
+            .second-board img {
+                width: 100%;
+                height: auto;
+                max-width: 150px;
+                margin: 10px 20px;
+            }
+
 
 
 
@@ -175,21 +220,41 @@
                         </div>
                     </div>
                     
-                    <strong><a href="file:///C:/Users/mom99/OneDrive/%EB%B0%94%ED%83%95%20%ED%99%94%EB%A9%B4/eatgo/main%20view.html">잇고</a></strong>
+                    <a href="file:///C:/Users/mom99/OneDrive/%EB%B0%94%ED%83%95%20%ED%99%94%EB%A9%B4/eatgo/main%20view.html"><strong>잇고</strong></a>
                 </div>
             </div>
 
 
             <!-- 메인 화면 구성 -->
             <div id="contents">
-                <img src="이미지폴더/결제완료.png">    
-                
-                <div id="finish_text">
-                    결제가 완료되었습니다
+                <div class="container" style="border-bottom: solid 2px orange;">
+                    <p>메뉴 구매</p>
                 </div>
+
+                <form id="search-form">
+                    <input type="text" id="search-input">
+                    <button type="submit" id="search-button"><img src="이미지폴더/돋보기.png" style="width: 100%; height: auto; max-width: 20px;"></button>
+                </form>
+
+                <div class="board">
+                    <img src="이미지폴더/치킨마요.png">
+                    <a href="#"><img src="이미지폴더/치킨마요.png"></a>
+                </div>
+
+                <div class="second-board">
+                    <img src="이미지폴더/치킨마요.png">
+                    <img src="이미지폴더/치킨마요.png">
+                </div>
+
+                
+            
             </div>
 
+    
+
         </div> 
+
+
 
 
     </body>
