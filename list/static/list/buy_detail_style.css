@@ -1,0 +1,194 @@
+
+            body {
+                margin: 0;
+            }
+
+            .container_for_header {
+                position: relative;
+            }
+
+            .text1 {
+                margin: 0 auto;
+                padding: 0;
+                margin-top: 60px;
+                font-size: 0.9rem;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                color: black;
+                width: 400px;
+                height: fit-content;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .text1 p {
+                padding-top: 20px;
+                text-align: left;
+            }
+            
+
+
+            .text2 p {
+                text-align: center;
+                height: fit-content;
+                padding-top: 0;
+                padding-top: 10px;
+            }
+
+
+
+            #header{
+                background-color: orange;
+                color: white;
+                text-align: center;
+                padding: 13px 0px 15px 0px; /* 위 아래 여백 설정*/
+                /* 13px 0px 15px 10px */
+                font-size: 1.5rem;
+                position: fixed;
+                top: 0; /* 화면 상단에 고정 */
+                width: 100%; /* 화면 너비만큼 헤더 확장*/
+                margin: 0;
+                list-style: none;
+                left: 0;
+            }
+
+            #header a {
+                text-decoration: none;
+                columns: inherit;
+                color: white;
+                text-align: center;
+                display: block;
+                margin: 0 auto;
+            }
+
+            #contents{
+                text-align: center;
+                margin-top: 65px;
+                width: 100%;
+                height: fit-content;
+                display: block;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+            }
+
+            
+            /*드롭다운*/
+            .dropdown_image {
+                width: 100%;
+                height: auto;
+                max-width: 20px;
+                display: block;
+                margin: 0 auto;
+                float: left;
+                overflow: hidden;
+            }
+            
+            .dropdown-button {
+                background: orange;
+                padding: 10px;
+                font-size: 15px; 
+                border: none;
+            }
+
+            .dropdown {
+                position: relative;
+                display: block;
+                float: left;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: orange;
+                color: black;
+                width: 300px;
+                height: auto;
+                padding: 0px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            }
+
+            .dropdwon-content a {
+                color: black;
+                padding: 100%;
+                margin: 0;
+                text-decoration: none;
+                display: block;
+                border-bottom: 1px solid #ddd
+            }
+
+            .dropdown-content a:hover {
+                background-color: #fccc8d;
+                width: 100%;
+            }
+            .dropdown:hover .dropdown-content {display: block;}
+            .dropdwon:hover .dropdown-button {background-color: orange}
+
+            .dropdown-content img {
+                width: 30%;
+                height: auto;
+            }
+
+             /*컨테이너 크기*/
+            .container {
+                width: 400px; 
+                height: 30px; 
+                margin: 0 auto;
+                text-align: center;
+                padding-bottom: 10px;
+                background: rgba(0,0,0,0.1);
+            }
+
+
+
+            #footer {
+                bottom: 0px;
+                margin-top: 10px;
+                padding-top: 15px;
+                position: fixed;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 400px;
+                height: fit-content;
+                background-color: whitesmoke;
+                text-align: right;
+            }
+
+
+
+            .button-container {
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+
+            
+            .add_btn {
+                width: 100%;
+                height: auto;
+                max-width: 400px;
+                border: none;
+                cursor: pointer;
+                background: none;
+                margin-right: 50px;
+            }
+
+            .add_btn img {
+                width: 100%;
+                height: auto;
+            }
+
+            .image1 img,
+            .image2 img {
+                width: 100%;
+                height: auto;
+                max-width: 400px;
+                margin: 10px auto;
+                display: block;
+            }
+
+            .review_button img {
+                width: 100%;
+                height: auto;
+                max-width: 400px;
+                margin: 20px 20px;
+            }

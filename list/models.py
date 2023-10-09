@@ -42,7 +42,7 @@ class Menu(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('list:menu_detail', args=[self.id, self.slug])
+        return reverse('list:buy_detail', args=[self.id, self.slug])
 
     def get_total_price(self):
         total_product = self.price

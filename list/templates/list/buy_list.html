@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Eatgo 잇고 :: 학식 매칭 서비스</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'list/buy_list_style.css' %}">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:url" content="https://eatgo.co.kr">
+        <meta property="og:title" content="잇고 Eatgo">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="icon.png">
+        <meta property="og:description" content="학식 매칭 플랫폼">
+        <link rel="shortcut icon" href="{% static 'home/images/icon.png' %}">  
+    </head>
+
+
+    <body>
+        <div id="wrap">
+
+            <!-- header -->
+            <div id="header">  
+                <!-- 중앙 "잇고" 로고 -->
+                <div class="container_for_header">
+
+                    <!--드롭 다운-->
+                    <div class="dropdown">
+                        <button class="dropdown-button">
+                            <a href="#">
+                                <img class="dropdown_image" src="{% static 'home/images/dropdown.png' %}">
+                            </a>
+                        </button>
+                        
+                        
+                        <!--드롭 다운 컨텐츠-->
+                        <div class="dropdown-content">
+                            <a href="#">
+                                <img src="{% static 'home/images/마이페이지.png' %}">
+                            </a>
+                            <hr color="white">
+                            <a href="#">
+                                <img src="{% static 'home/images/메뉴.png' %}">
+                            </a>
+                            <a href="#">
+                                <img src="{% static 'home/images/잇고.png' %}" >
+                            </a>
+                            <a href="#">
+                                <img src="{% static 'home/images/식권.png' %}">
+                            </a>
+                            <a href="#">
+                                <img src="{% static 'home/images/주문내역.png' %}">
+                            </a>
+                            <a href="#">
+                                <img src="{% static 'home/images/이벤트.png' %}">
+                            </a>
+                            <a href="#">
+                                <img src="{% static 'home/images/문의.png' %}">
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <a href="{% url 'home:home' %}">
+                        <strong>잇고</strong>
+                    </a>
+                </div>
+            </div>
+
+
+            <!-- 메인 화면 구성 -->
+            <div id="contents">
+                <div class="container" style="border-bottom: solid 2px orange;">
+                    <p>메뉴 구매</p>
+                </div>
+
+                <form id="search-form">
+                    <input type="text" id="search-input">
+                    <button type="submit" id="search-button">
+                        <img src="{% static 'home/images/돋보기.png' %}" style="width: 100%; height: auto; max-width: 20px;">
+                    </button>
+                </form>
+
+                <div class="board">
+                    <img src="{% static 'home/images/치킨마요.png' %}">
+                    <a href="#">
+                        <img src="{% static 'home/images/치킨마요.png' %}">
+                    </a>
+                </div>
+
+                <div class="second-board">
+                    <img src="{% static 'home/images/치킨마요.png' %}">
+                    <img src="{% static 'home/images/치킨마요.png' %}">
+                </div>
+                
+            
+            </div>
+
+        </div> 
+
+    </body>
+</html>
