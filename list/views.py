@@ -1,24 +1,15 @@
 from django.shortcuts import render, get_object_or_404
-from .models import *
+from .models import Menu
 from cart.forms import AddProductForm
 
-# Create your views here.
+def menu_list(request):
+    menus = Menu.objects.filter(available_display=True)
+    return render(request, 'list/buy_list.html', {'menus': menus})
 
-def menu_in_category(request, category_slug=None):
-    current_category = None
-    categories = Buycategory.objects.all()
-    products = Menu.objects.filter(available_display=True)
+def menu_detail(request, id, slug):
+    menu = get_object_or_404(Menu, id=id, slug=slug, available_display=True)
+    add_to_cart = AddProductForm(initial={'quantity': 1})
+    return render(request, 'list/buy_detail.html', {'menu': menu, 'add_to_cart': add_to_cart})
 
-    if category_slug:
-        current_category = get_object_or_404(Buycategory, slug=category_slug)
-        products = products.filter(category=current_category)
-
-    return render(request, 'list/buy_list.html', {'current_category': current_category, 'categories':categories, 'products':products})
-
-def menu_detail(request, id, product_slug=None):
-    product = get_object_or_404(Menu, id=id, slug=product_slug)
-    add_to_cart = AddProductForm(initial={'quantity' : 1})
-    return render(request, 'list/buy_detail.html', {'product': product, 'add_to_cart' : add_to_cart})
-
-def buy_list(request):
+def menu_list(request):
     return render(request, 'list/buy_list.html')
