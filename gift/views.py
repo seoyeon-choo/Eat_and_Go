@@ -29,7 +29,7 @@ def send_gift(request):
 
 from django.shortcuts import render
 
-def success_view(request):
+def success_view(request): #html을 보여주는 함수
     return render(request, 'gift/success.html')
 
 

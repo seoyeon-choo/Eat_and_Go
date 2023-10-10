@@ -11,5 +11,5 @@ urlpatterns = [
     path('send/', create_gift, name='create_gift'),  # create_gift 뷰를 '/send/' URL에 추가
     path('api/', include(router.urls)),  # GiftViewSet의 API URL을 '/api/'에 추가
     path('create/', send_gift, name='send_gift'),
-    path('success/', views.success_view, name='success'),
+    path('success/', views.success_view, name='success'), #html을 보여주는 함수를 호출하는 url
 ]
