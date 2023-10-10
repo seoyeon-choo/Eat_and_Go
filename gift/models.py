@@ -17,3 +17,9 @@ class Gift(models.Model):
         except User.DoesNotExist:
             self.check = 'N'
         super(Gift, self).save(*args, **kwargs)
+
+
+class Code(models.Model):
+    quantity = models.IntegerField()
+    message = models.TextField()
+    phone_number = models.CharField(max_length=15)

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Purchase Ticket</title>
+</head>
+<body>
+    <h1>Purchase Ticket</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="quantity">Ticket Quantity:</label>
+        <input type="number" name="quantity" required><br>
+
+        <label for="message">Message:</label>
+        <textarea name="message" rows="4" required></textarea><br>
+
+        <label for="phone_number">Phone Number:</label>
+        <input type="tel" name="phone_number" required><br>
+
+        <input type="submit" value="Purchase Ticket">
+    </form>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Gift</title>
+</head>
+<body>
+    <h1>Create Gift</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="taker">받는 사람:</label>
+        <input type="text" id="taker" name="taker" required><br>
+        <label for="message">메시지:</label>
+        <textarea id="message" name="message" required></textarea><br>
+        <input type="submit" value="Create Gift">
+    </form>
+</body>
+</html>
