@@ -26,8 +26,7 @@ urlpatterns = [
     path('cart/', include('cart.urls')),
     path('gift/', include('gift.urls')),
     path('', include('home.urls')),
-    
-    
+    #path('ticket/', include('ticket.urls')),
 ]
 
 
