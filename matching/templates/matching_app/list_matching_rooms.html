@@ -14,7 +14,7 @@
                 <strong>Max Participants:</strong> {{ matching_room.max_participants }}<br>
                 <strong>Creator Phone:</strong> {{ matching_room.creator_phone }}<br>
                 {% if matching_room.is_matching %}
-                    <a href="{% url 'participate' matching_room.id %}">Participate</a>
+                    <a href="{% url 'matching:participate' matching_room.id %}">Participate</a>
                 {% else %}
                     <span>Matching Completed</span>
                 {% endif %}
@@ -23,6 +23,6 @@
             <li>No matching rooms available.</li>
         {% endfor %}
     </ul>
-    <a href="{% url 'create_matching_room' %}">Create New Room</a>
+    <a href="{% url 'matching:create_matching_room' %}">Create New Room</a>
 </body>
 </html>
