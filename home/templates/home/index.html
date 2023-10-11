@@ -2,6 +2,8 @@
 <html lang="en">
 
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Eatgo 잇고 :: 학식 매칭 서비스</title>
         {% load static %}
         <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}">
@@ -14,56 +16,272 @@
         <meta property="og:description" content="학식 매칭 플랫폼">
         <link rel="shortcut icon" href="{% static 'home/images/icon.png' %}">  
     </head>
+    <style>
+        body {
+         margin: 0;
+         padding: 0;
+       }
 
 
-    <body style="background-color: white;">
-        <div id="wrap">
+       .navbar {
+         background-color: orange; /* 주황색 배경 색상 */
+         height: 50px; /* 상단바 높이 */
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;
+         z-index: 2; /* 다른 요소 위에 나타나도록 설정 */
+         display: flex; /* 내부 요소들을 가로로 정렬하기 위해 */
+         align-items: center;
+          /* 내부 요소들을 좌우로 간격 분배 */
+          /* 내부 요소들을 수직 가운데 정렬 */
+       }
 
-            <!-- header -->
-            <div id="header">  
-                <!-- 중앙 "잇고" 로고 -->
-                <div class="container_for_header">
-                    
-                    <!--드롭 다운-->
-                    <div class="dropdown">
-                        <button class="dropdown-button">
-                            <a href="#">
-                                <img class="dropdown_image" src="{% static 'home/images/dropdown.png' %}">
-                            </a>
-                        </button>
-                        
-                        <!--드롭 다운 컨텐츠-->
-                        <div class="dropdown-content">
-                            <a href="#">
-                                <img src="{% static 'home/images/마이페이지.png' %}">
-                            </a>
-                            <hr color="white">
-                            <a href="#">
-                                <img src="{% static 'home/images/메뉴.png' %}">
-                            </a>
-                            <a href="#">
-                                <img src="{% static 'home/images/잇고.png' %}" >
-                            </a>
-                            <a href="#">
-                                <img src="{% static 'home/images/식권.png' %}">
-                            </a>
-                            <a href="#">
-                                <img src="{% static 'home/images/주문내역.png' %}">
-                            </a>
-                            <a href="#">
-                                <img src="{% static 'home/images/이벤트.png' %}">
-                            </a>
-                            <a href="#">
-                                <img src="{% static 'home/images/문의.png' %}">
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <a href="{% url 'home:home' %}">
-                        <strong>잇고</strong>
-                    </a>
-                </div>
-            </div>
+       .navbar-text {
+         color: white; /* 글자 색상 */
+         font-weight: bold;
+         text-align: center;
+         flex-grow: 1;
+       }
+
+       html.open {
+         overflow: hidden;
+       }
+
+       #menu.open {
+         left: 0px;
+       }
+
+       .page_cover.open {
+         display: block;
+       }
+
+       .btn {
+         width: 30px; /* 햄버거 버튼의 너비 */
+         height: 30px; /* 햄버거 버튼의 높이 */
+         margin-left: 10px; /* 햄버거 버튼과 상단바 사이의 간격 조정 */
+         cursor: pointer;
+       }
+
+       .btn img {
+         width: 100%; /* 이미지를 버튼의 크기에 맞게 조절 */
+         height: 100%;
+       }
+
+
+       .close {
+         width: 50px;
+         height: 50px;
+         position: absolute;
+         left: 0px;
+         top: 0px;
+
+         background-size: 50%;
+         background-repeat: no-repeat;
+         background-position: center;
+         cursor: pointer;
+       }
+
+       #menu {
+         width: 150px;
+         height: 100%;
+         position: fixed;
+         top: 0px;
+         left: -202px;
+         z-index: 10;
+         border: 1px solid #c9c9c9;
+         background-color: white;
+         text-align: center;
+         font-weight: bold;
+         transition: All 0.2s ease;
+         -webkit-transition: All 0.2s ease;
+         -moz-transition: All 0.2s ease;
+         -o-transition: All 0.2s ease;
+         padding-top: 50px;
+         padding-left: 0px;
+         padding-right: 40px;
+       }
+
+       #menu a {
+         padding: 0;
+         text-decoration: none;
+         font-size: 18px;
+         color: #25a4cd;
+         display: block;
+         transition: 0.3s;
+       }
+
+       #menu.open {
+         left: 0px;
+       }
+
+       .page_cover.open {
+         display: block;
+       }
+
+       .page_cover {
+         width: 100%;
+         height: 100%;
+         position: fixed;
+         top: 0px;
+         right: 0px;
+         background-color: rgba(0, 0, 0, 0.4);
+         z-index: 4;
+         display: none;
+       }
+
+       #menu ul {
+         width: 190px;
+         margin: 0;
+         padding: 0;
+       }
+
+       #menu ul.nav li {
+         position: relative;
+         float: left;
+         width: 100%;
+         list-style-type: none;
+         font-size: 18px;
+       }
+
+       #menu ul.nav li a {
+         display: block;
+         width: 100%;
+         height: 100%;
+         line-height: 50px;
+         text-indent: 20px;
+         text-align: left;
+         color: orange;
+         font-weight: bold;
+         text-decoration: none;
+       }
+
+       #menu ul.nav li a:hover {
+         background: #eee;
+       }
+
+       #menu ul.nav li .sub_mobile a {
+         position: relative;
+         float: left;
+         display: block;
+         width: 100%;
+         z-index: 999;
+         background: #ccc;
+       }
+
+       #menu ul.nav li .sub_mobile a:hover {
+         background: #787878;
+         color: #fff;
+         z-index: 999;
+       }
+       /* "잇고매칭" 텍스트 스타일 */
+.navbar-text a {
+    color: white; /* 텍스트 색상을 하양으로 설정 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+     </style>
+
+</head>
+<body>
+  <div class="navbar">
+    <div class="btn">
+      <img src="{% static 'home/images/menu.png' %}" alt="햄버거 버튼">
+    </div>
+    <div class="navbar-text">
+        <a href="{% url 'home:home' %}">잇고매칭</a>
+    </div>
+
+  </div>
+
+  <div onclick="history.back();" class="page_cover"></div>
+
+  <div id="menu">
+    <ul class="nav">
+        <li><a href="{% url 'home:mypage' %}">마이페이지</a></li>
+
+      <li><a href="#">잇고</a></li>
+      <li><a href="#">식권</a></li>
+          <li><a href="#">주문내역</a></li>
+          <li><a href="#">이벤트</a></li>
+          <li><a href="#">문의</a></li>
+        </ul>
+      </li>
+    </ul>
+    <div onclick="history.back();" class="close">
+      <img src="{% static 'home/images/cross.png' %}" alt="닫기 버튼" style="width: 35px; height: 35px;margin-top: 10px;">
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $(".btn").click(function() {
+        $("#menu,.page_cover,html").addClass("open");
+        window.location.hash = "#open";
+      });
+
+      window.onhashchange = function() {
+        if (location.hash != "#open") {
+          $("#menu,.page_cover,html").removeClass("open");
+        }
+      };
+
+      $("#menu ul.sub_mobile").hide();
+      $("#menu ul.nav li").click(function() {
+        $("ul", this).slideToggle("fast");
+      });
+    });
+  </script>
+
+<!--    <body style="background-color: white;">-->
+<!--        <div id="wrap">-->
+
+<!--            &lt;!&ndash; header &ndash;&gt;-->
+<!--            <div id="header">  -->
+<!--                &lt;!&ndash; 중앙 "잇고" 로고 &ndash;&gt;-->
+<!--                <div class="container_for_header">-->
+<!--                    -->
+<!--                    &lt;!&ndash;드롭 다운&ndash;&gt;-->
+<!--                    <div class="dropdown">-->
+<!--                        <button class="dropdown-button">-->
+<!--                            <a href="#">-->
+<!--                                <img class="dropdown_image" src="{% static 'home/images/dropdown.png' %}">-->
+<!--                            </a>-->
+<!--                        </button>-->
+<!--                        -->
+<!--                        &lt;!&ndash;드롭 다운 컨텐츠&ndash;&gt;-->
+<!--                        <div class="dropdown-content">-->
+<!--                            <a href="#">-->
+<!--                                <img src="{% static 'home/images/마이페이지.png' %}">-->
+<!--                            </a>-->
+<!--                            <hr color="white">-->
+<!--                            <a href="#">-->
+<!--                                <img src="{% static 'home/images/메뉴.png' %}">-->
+<!--                            </a>-->
+<!--                            <a href="#">-->
+<!--                                <img src="{% static 'home/images/잇고.png' %}" >-->
+<!--                            </a>-->
+<!--                            <a href="#">-->
+<!--                                <img src="{% static 'home/images/식권.png' %}">-->
+<!--                            </a>-->
+<!--                            <a href="#">-->
+<!--                                <img src="{% static 'home/images/주문내역.png' %}">-->
+<!--                            </a>-->
+<!--                            <a href="#">-->
+<!--                                <img src="{% static 'home/images/이벤트.png' %}">-->
+<!--                            </a>-->
+<!--                            <a href="#">-->
+<!--                                <img src="{% static 'home/images/문의.png' %}">-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    -->
+<!--                    <a href="{% url 'home:home' %}">-->
+<!--                        <strong>잇고</strong>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </div>-->
     
     
             <!-- 메인 화면 구성 -->
