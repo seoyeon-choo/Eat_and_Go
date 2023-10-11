@@ -1,6 +1,6 @@
 from twilio.rest import Client
 from rest_framework import viewsets, status
-from .models import Gift, User
+from .models import Gift, User, Code
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from .serializers import GiftSerializer
@@ -27,6 +27,7 @@ def send_gift(request):
 
     return render(request, 'gift/gift_form.html', {'serializer': serializer})
 
+
 from django.shortcuts import render
 
 def success_view(request): #html을 보여주는 함수
@@ -34,8 +35,6 @@ def success_view(request): #html을 보여주는 함수
 
 
 
-from django.shortcuts import render
-from .models import Gift, Code
 import qrcode
 from io import BytesIO
 import base64
@@ -43,21 +42,21 @@ from twilio.rest import Client
 
 def create_gift(request):
     if request.method == "POST":
-        taker = request.POST.get('taker')
+        taker = request.POST.get('phone_number')
         message = request.POST.get('message')
         
         # Gift 모델에 새로운 기프트(Gift) 객체를 생성합니다.
-        gift = Gift.objects.create(taker=taker, message=message)
+        gift = Gift.objects.create(taker=taker, message=message, giver=request.user)
 
         # Code 모델에 새로운 코드(Code) 객체를 생성하고 Gift와 연결합니다.
-        code = Code.objects.create(quantity=gift.quantity, message=gift.message, phone_number=taker)
+        code = Code.objects.create(quantity=1, message=gift.message, phone_number=taker)
         
         # Gift와 Code 객체를 저장합니다.
         gift.save()
         code.save()
 
         # QR 코드에 포함될 데이터를 생성합니다.
-        qr_data = f"Gift ID: {gift.id}\nTaker: {gift.taker}\nMessage: {gift.message}\nPhone Number: {taker}"
+        qr_data = f"Gift ID: {gift.id}\nGiver: {gift.giver}\nMessage: {gift.message}\nPhone Number: {gift.taker}"
         # QR 코드 생성
         qr = qrcode.QRCode(
             version=1,
@@ -68,12 +67,20 @@ def create_gift(request):
         qr.add_data(qr_data)
         qr.make(fit=True)
 
-        # QR 코드 이미지를 저장할 BytesIO 객체를 생성합니다.
+        # QR 코드 이미지를 생성
         qr_img = BytesIO()
         qr.make_image(fill_color="black", back_color="white").save(qr_img, format="PNG")
 
         # QR 코드 이미지를 base64로 인코딩합니다.
         qr_img_base64 = base64.b64encode(qr_img.getvalue()).decode('utf-8')
+
+        # 이미지 파일을 저장
+        image_filename = 'qr_code.png'  # 이미지 파일 이름
+        with open(image_filename, 'wb') as qr_file:
+            qr_file.write(qr_img.getvalue())
+
+        # 이미지 파일의 URL을 생성
+        image_url = f'https://example.com/{image_filename}'  # 이미지 파일의 공개 URL을 사용
 
         # Gift 객체의 check 필드를 확인하여 'N'일 경우에만 Twilio를 통해 MMS를 보냅니다.
         if gift.check == 'N':
@@ -84,8 +91,8 @@ def create_gift(request):
 
             # QR 코드 이미지를 MMS로 전송
             message = client.messages.create(
-                body=f"Gift ID: {gift.id}\nTaker: {gift.taker}\nMessage: {gift.message}",
-                media_url=[f'data:image/png;base64,{qr_img_base64}'],  # QR 코드를 이미지 URL로 첨부
+                body=f"Gift ID: {gift.id}\nGiver: {gift.giver}\nMessage: {gift.message}",
+                media_url=[image_url],  # 이미지 URL로 첨부
                 from_='+14582415262',  # Twilio 전화 번호
                 to='+8201056068772'  # 수신자 전화 번호
             )
@@ -94,10 +101,3 @@ def create_gift(request):
         return render(request, 'gift/ticket_details.html', {'gift': gift, 'qr_img_base64': qr_img_base64})
 
     return render(request, 'gift/purchase_ticket.html')
-
-
-
-
-
-
-
