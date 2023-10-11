@@ -17,55 +17,99 @@
 
 
     <body>
-        <div id="wrap">
+       
 
-            <!-- header -->
-            <div id="header">  
+        <style>
 
-                <!-- 중앙 "잇고" 로고 -->
-                <div class="container_for_header">
+       
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-y: auto; /* 수직 스크롤 활성화 */
+}
 
-                    <!--드롭 다운-->
-                    <div class="dropdown">
-                        <button class="dropdown-button">
-                            <a href="">
-                                <img class="dropdown_image" src="{% static 'home/images/dropdown.png' %}">
-                            </a>
-                        </button>
-                        
-                        <!--드롭 다운 컨텐츠-->
-                        <div class="dropdown-content">
-                            <a href="#">
-                                <img src="{% static 'home/images/마이페이지.png' %}">
-                            </a>
-                            <hr color="white">
-
-                            <a href="#">
-                                <img src="{% static 'home/images/메뉴.png' %}">
-                            </a>
-                            <a href="#">
-                                <img src="{% static 'home/images/잇고.png' %}">
-                            </a>
-                            <a href="#">
-                                <img src="{% static 'home/images/식권.png' %}">
-                            </a>
-                            <a href="#">
-                                <img src="{% static 'home/images/주문내역.png' %}">
-                            </a>
-                            <a href="#">
-                                <img src="{% static 'home/images/이벤트.png' %}">
-                            </a>
-                            <a href="#">
-                                <img src="{% static 'home/images/문의.png' %}">
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <a href="{% url 'home:home' %}">
-                        <strong>잇고</strong>
-                    </a>
-                </div>
+/* 최소 높이 설정 */
+#contents {
+    min-height: calc(100vh - 50px); /* 50px은 상단 바 */
+    margin-bottom: 40px; /* 하단 여백 설정 */}
+    
+            img {
+                max-width: 100%; /* 최대 너비 100%로 설정하여 이미지가 부모 컨테이너에 맞게 조절됩니다. */
+                height: auto; /* 가로세로 비율을 유지하면서 크기를 조절합니다. */
+            }
+    
+            .navbar {
+                background-color: orange;
+                height: 50px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 2;
+                display: flex;
+                align-items: center;
+            }
+    
+            .navbar-text {
+                color: white;
+                font-weight: bold;
+                text-align: center;
+                flex-grow: 1;
+            }
+            .navbar-text a {
+            color: white; /* 텍스트 색상을 흰색으로 설정 */
+            text-decoration: none; /* 밑줄 제거 */
+        }
+        button {
+    
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+    
+    #exit-button {
+    position: absolute; /* 절대 위치 설정 */
+    top: 13px; /* 위에서 13px 내림 */
+    left: 10px; /* 왼쪽에서 10px 내려감 */
+    }
+    #exit-button img {
+    width: 18px; /* 이미지 너비 설정 */
+    height: 18px; /* 이미지 높이 설정 */
+    }
+    .container {
+    border-bottom: solid 2px orange;
+    margin-top: -15px;
+}
+        </style>
+        </head>
+    
+    
+        <body>
+            <div id="wrap">
+    
+             <!-- 상단바 -->
+        <div class="navbar">
+            <div class="navbar-text">
+                <a href="{% url 'home:home' %}">잇고매칭</a>
             </div>
+            <button id="exit-button">
+                <img src="{% static 'home/images/left-arrow.png' %}" alt="뒤로 가기">
+            </button>
+            
+            
+        </div>
+    
+        <script>
+            document.getElementById("exit-button").addEventListener("click", function() {
+                window.history.back(); // 브라우저의 뒤로 가기 기능 호출
+            });
+        </script>
             
 
             <!-- 메인 화면 구성 -->
@@ -83,7 +127,7 @@
                 
                
                 <div class="review_button">
-                    <a href="#">
+                    <a href="{% url 'list:review' %}">
                         <img src="{% static 'home/images/리뷰보기버튼.png' %}">
                     </a>
                 </div>
@@ -96,7 +140,7 @@
     
             <!-- footer -->
             
-            <div id="footer" style="border-top: solid 2px gray;">
+            <div id="footer" style="border-top: solid 1px gray; padding-top: 0px;">
 
                 <div class="button-container">
                     <button class="add_btn">
@@ -108,6 +152,7 @@
             </div>
 
         </div> 
+        
 
     </body>
 </html>
