@@ -10,31 +10,6 @@ class GiftViewSet(viewsets.ModelViewSet):
     serializer_class = GiftSerializer
 
 
-def send_gift(request):
-    if request.method == 'POST':
-        # POST 요청을 처리하고 Gift를 생성합니다.
-        serializer = GiftSerializer(data=request.POST, context={'request': request})
-        if serializer.is_valid():
-            serializer.save()
-            messages.success(request, 'Gift created successfully!')
-            return redirect('success')  # 이동할 URL을 지정하세요.
-        else:
-            messages.error(request, 'Error creating gift. Please check the input.')
-
-    else:
-        # GET 요청에서는 폼을 보여줍니다.
-        serializer = GiftSerializer()
-
-    return render(request, 'gift/gift_form.html', {'serializer': serializer})
-
-
-from django.shortcuts import render
-
-def success_view(request): #html을 보여주는 함수
-    return render(request, 'gift/success.html')
-
-
-
 import qrcode
 from io import BytesIO
 import base64
@@ -42,6 +17,7 @@ from twilio.rest import Client
 
 def create_gift(request):
     if request.method == "POST":
+        quantity = request.POST.get('quantity')
         taker = request.POST.get('phone_number')
         message = request.POST.get('message')
         
@@ -49,7 +25,7 @@ def create_gift(request):
         gift = Gift.objects.create(taker=taker, message=message, giver=request.user)
 
         # Code 모델에 새로운 코드(Code) 객체를 생성하고 Gift와 연결합니다.
-        code = Code.objects.create(quantity=1, message=gift.message, phone_number=taker)
+        code = Code.objects.create(quantity=quantity, message=gift.message, phone_number=taker)
         
         # Gift와 Code 객체를 저장합니다.
         gift.save()
@@ -80,7 +56,7 @@ def create_gift(request):
             qr_file.write(qr_img.getvalue())
 
         # 이미지 파일의 URL을 생성
-        image_url = f'https://example.com/{image_filename}'  # 이미지 파일의 공개 URL을 사용
+        image_url = f'http://127.0.0.1:8000/gift/send/qr_code.png'  # 이미지 파일의 공개 URL을 사용
 
         # Gift 객체의 check 필드를 확인하여 'N'일 경우에만 Twilio를 통해 MMS를 보냅니다.
         if gift.check == 'N':
@@ -92,7 +68,7 @@ def create_gift(request):
             # QR 코드 이미지를 MMS로 전송
             message = client.messages.create(
                 body=f"Gift ID: {gift.id}\nGiver: {gift.giver}\nMessage: {gift.message}",
-                media_url=[image_url],  # 이미지 URL로 첨부
+                media_url=['http://127.0.0.1:8000/gift/send/qr_code.png'],  # 이미지 URL로 첨부[image_url]
                 from_='+14582415262',  # Twilio 전화 번호
                 to='+8201056068772'  # 수신자 전화 번호
             )
