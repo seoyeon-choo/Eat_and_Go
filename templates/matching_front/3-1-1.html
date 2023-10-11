@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>잇고 매칭</title>
+    <link rel="stylesheet" href="css/css.css">
+    
+    <style>
+           .board_title {
+            position: relative; /* 정렬 드롭다운을 포함한 상위 요소를 상대 위치로 설정 */
+        }
+
+        .sort_dropdown {
+           
+         position: fixed;
+         top: 10%;
+        right: 100px;
+         z-index: 1;
+    
+            
+        }
+           
+        .sort_dropdown select {
+            padding: 5px;
+            border-radius: 60px;
+            border: 1px solid #D9D9D9;
+            background: #FFF;
+        }
+
+
+        /* 추가된 CSS 스타일 */
+        .header {
+         background-color: orange; /* 오렌지색 배경 */
+         color: white; /* 텍스트 색상 */
+            text-align: center; /* 텍스트 가운데 정렬 */
+         padding: 13px 0; /* 위아래 여백 설정 */
+            font-size: 1.5rem; /* 글꼴 크기 설정 */
+            position: fixed;
+            top: 0; /* 화면 상단에 고정 */
+         width: 100%; /* 화면 너비만큼 헤더 확장 */
+        }
+
+        .board_title {
+            position: relative; /* 정렬 드롭다운을 포함한 상위 요소를 상대 위치로 설정 */
+        }
+
+        .sort_dropdown {
+            position: sticky;
+            top: 100%;
+            right: 100%;
+            z-index: 1;
+        }
+
+        /* 정렬 드롭다운 스타일 */
+        .sort_dropdown select {
+            padding: 5px;
+         border-radius: 60px; /* 원 모양으로 라운드 처리 */
+        border: 1px solid #D9D9D9; /* 테두리 설정 */
+         background: #FFF; /* 배경 색상 설정 */
+         margin-bottom: -10px; /* 아래 간격을 조정 */
+        }
+
+        /* 등록 버튼 스타일 */
+        .register_button {
+            background-color: orange;
+            color: white;
+            font-size: 10px;
+            padding: 10px 10px; /* 버튼 내부 패딩 설정 */
+            text-decoration: none; /* 링크 텍스트에 밑줄 제거 */
+            border-radius: 60px;
+            display: block; /* 블록 레벨 요소로 변경하여 중앙에 배치 */
+            margin: 10px auto; /* 가운데 정렬을 위한 여백 설정 */
+            width: 40px; /* 버튼의 너비를 조정하여 중앙으로 이동 */
+            text-align: center; /* 텍스트를 가운데 정렬 */
+        }
+
+        .register_button_container {
+    position: fixed;
+    bottom: 20px; /* 하단 여백 조정 */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 2; /* 다른 요소 위에 나타나도록 설정 */
+}
+
+        .register_button:hover {
+    background-color: darkorange;
+    cursor: pointer;
+}
+        .board_list {
+           
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .post {
+            border: 1px solid #ccc;
+            padding: 5px;
+            margin-bottom: 10px; /* 아래 간격을 조정 */
+        
+        }
+
+        .post .title {
+            font-weight: bold;
+        }
+
+      
+    </style>
+</head>
+<body>
+    <div class="header">
+        <strong>잇고 매칭</strong>
+    </div>
+    <div class="board_wrap">
+        <div class="board_title">
+        
+            <!-- 정렬 드롭다운을 포함한 div -->
+            <div class="sort_dropdown">
+                <label for="sort">   </label>
+                <select id="sort" onchange="sortList()">
+                    <option value="latest">최신순</option>
+                    <option value="deadline">마감 임박순</option>
+                    <option value="time">시간순</option>
+                </select>
+            </div>
+        </div>  
+         
+        <div class="board_wrap">
+       
+            <div class="board_list">
+                <div class="post_content">
+                    <div class="title"></div>
+                    <div class="date"></div>
+                    <div class="people"></div>
+                    <div class="map"></div>
+               
+ 
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+
+
+     
+ 
+          
+   
+           
+ <div class="register_button_container" style="margin-top: 10px;">
+                <!-- 등록 버튼 -->
+ <a href="3-3 write.html" class="register_button">+ 글쓰기</a>
+  </div>
+ 
+    </div>
+  
+
+    
+
+
+   
+
+
+<script>
+        
+ // localStorage에서 글 데이터 가져오기
+   const storedPosts = localStorage.getItem('posts');
+       if (storedPosts) {
+       const posts = JSON.parse(storedPosts);
+            displayPosts(posts);
+
+             // 시간순으로 정렬한 후에 데이터를 표시
+              displayPosts(posts, true); // true로 변경하여 시간순 정렬을 적용
+        }
+
+        // 현재 시간을 가져오는 함수
+        function getCurrentTime() {
+            const now = new Date();
+            return now.getTime();
+        }
+
+        // 글 목록을 화면에 표시하는 함수
+        function displayPosts(posts, sortByTime = false) {
+            const boardList = document.querySelector('.board_list');
+
+            // 이전에 표시한 글 목록을 모두 제거
+            boardList.innerHTML = '';
+
+            // 현재 시간 
+            const currentTime = getCurrentTime();
+
+            // 저장된 글 데이터를 이용하여 목록 생성
+            posts.forEach(function(post) {
+                const newPost = document.createElement('div');
+                newPost.classList.add('post');
+
+                newPost.innerHTML = `
+                    <div class="post_content">
+                        <div class="title">${post.title}</div>
+                        <div class="cont">${post.cont}</div>
+                        <div class="date2"><img src="event.png" alt="날짜 및 시간" class="image2"> ${post.date}</div>
+                        <div class="people2"><img src="user.png" alt="인원수" class="image2"> ${post.people}</div>
+                        <div class="map2"><img src="pin.png" alt="장소" class="image2"> ${post.map}</div>
+                    </div>
+                    <div class="button_container">
+                        <button class="join_button matchingButton">매칭하기</button>
+
+
+                        <button class="chat_button">채팅하기</button>
+                    </div>
+                `;
+
+                // 현재 시간과 글의 시간을 비교하여 정렬 순서를 결정합
+                const postTime = new Date(post.date).getTime();
+                const timeDifference = Math.abs(postTime - currentTime);
+                newPost.setAttribute('data-time-difference', timeDifference);
+
+                if (sortByTime) {
+                    boardList.insertBefore(newPost, boardList.firstChild);
+                } else {
+                    boardList.appendChild(newPost);
+                }
+            });
+
+            if (!sortByTime) {
+                // 시간순으로 정렬하는 경우에는 최신순 정렬을 유지
+                sortListByOption('latest');
+            }
+        }
+// 드롭다운에서 옵션을 선택할 때 호출되는 함수
+function sortList() {
+    const selectedOption = document.getElementById('sort').value;
+
+    if (selectedOption === 'latest' || selectedOption === 'deadline' || selectedOption === 'time') {
+        // 옵션 선택에 따라 정렬 함수를 호출
+        if (selectedOption === 'latest') {
+            sortListByOption('latest');
+        } else if (selectedOption === 'deadline') {
+            sortListByOption('deadline');
+        } else if (selectedOption === 'time') {
+            sortListByTime();
+        }
+    }
+}
+
+// 최신순 또는 마감 임박순으로 정렬하는 함수
+function sortListByOption(option) {
+    const boardList = document.querySelector('.board_list');
+    const boardItems = Array.from(boardList.querySelectorAll('.post'));
+
+    boardItems.sort((a, b) => {
+        if (option === 'latest') {
+            const dateA = new Date(a.querySelector('.date2').textContent.replace('년 ', '-').replace('월 ', '-').replace('일', '')).getTime();
+            const dateB = new Date(b.querySelector('.date2').textContent.replace('년 ', '-').replace('월 ', '-').replace('일', '')).getTime();
+            return dateB - dateA; // 최신순 정렬
+        } else if (option === 'deadline') {
+            const peopleA = parseInt(a.querySelector('.people2').textContent);
+            const peopleB = parseInt(b.querySelector('.people2').textContent);
+            return peopleA - peopleB; // 마감 임박순 정렬
+        }
+    });
+
+    // 정렬된 목록을 다시 출력
+    boardList.innerHTML = '';
+    boardItems.forEach(item => {
+        boardList.appendChild(item);
+    });
+}
+
+// 시간순으로 정렬하는 함수
+function sortListByTime() {
+    const selectedOption = document.getElementById('sort').value;
+
+    if (selectedOption !== 'time') {
+        // 선택한 옵션이 'time'이 아니면 그대로 리턴
+        return;
+    }
+
+    const boardList = document.querySelector('.board_list');
+    const boardItems = Array.from(boardList.querySelectorAll('.post'));
+    const currentTime = getCurrentTime();
+
+    boardItems.sort((a, b) => {
+        const timeDifferenceA = parseInt(a.getAttribute('data-time-difference'));
+        const timeDifferenceB = parseInt(b.getAttribute('data-time-difference'));
+
+        // 현재 시간과의 차이를 비교하여 정렬
+        return Math.abs(timeDifferenceA - currentTime) - Math.abs(timeDifferenceB - currentTime);
+    });
+
+    // 정렬된 목록을 다시 출력
+    boardList.innerHTML = '';
+    boardItems.forEach(item => {
+        boardList.appendChild(item);
+    });
+}
+
+    
+
+
+
+</script>
+
+
+      
+<script>
+    // DOMContentLoaded 이벤트 핸들러를 사용하여 코드 실행
+    document.addEventListener('DOMContentLoaded', function () {
+        // 모든 "매칭하기" 버튼을 선택합니다.
+        const matchingButtons = document.querySelectorAll('.matchingButton');
+        const modal = document.querySelector('.modal');
+
+        // 각 버튼에 대해 클릭 이벤트 리스너를 추가합니다.
+        matchingButtons.forEach(matchingButton => {
+            matchingButton.addEventListener('click', () => {
+                // 매칭 팝업 페이지를 로드하여 표시
+                const popupWindow = window.open('matching.html', '매칭 팝업', 'width=400,height=300');
+            });
+
+            // "채팅하기" 버튼에 대한 클릭 이벤트 리스너를 추가합니다.
+            const chatButton = matchingButton.nextElementSibling;
+            chatButton.addEventListener('click', () => {
+                // "3-2 chat.html" 페이지로 이동
+                window.location.href = '3-2 chat.html';
+            });
+        });
+    });
+</script>
+
+
+
+
+
+    
+   
+
+
+<script>
+
+        window.addEventListener('scroll', function() {
+    const buttonContainer = document.querySelector('.register_button_container');
+    const distanceFromTop = buttonContainer.getBoundingClientRect().top;
+    
+    // 스크롤을 내릴 때 버튼이 화면 위에 사라지지 않도록
+    if (distanceFromTop > 20) {
+        buttonContainer.style.top = 'auto';
+        buttonContainer.style.bottom = '20px';
+    } else {
+        buttonContainer.style.top = '20px';
+        buttonContainer.style.bottom = 'auto';
+    }
+});
+//localStorage.clear(); // 로컬 스토리지의 모든 데이터를 삭제합
+
+</script>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+    // 이미 매칭한 경우 로컬 스토리지에서 상태 가져오기
+    const matched = localStorage.getItem('matched');
+
+    // 매칭하기 버튼 클릭 시 동작 설정
+    const matchingButtons = document.querySelectorAll('.matchingButton');
+    matchingButtons.forEach(matchingButton => {
+        matchingButton.addEventListener('click', () => {
+            if (!matched) {
+                const popupWindow = window.open('matching.html', '매칭 팝업', 'width=400,height=300');
+            } else {
+                alert('이미 매칭하셨습니다.');
+            }
+        });
+    });
+});
+
+
+      // 메인 페이지의 스크립트에서 acceptMatch 함수 정의
+function acceptMatch() {
+    // 매칭 수락 시 처리할 로직 추가
+    alert('매칭을 수락합니다.');
+
+    // 매칭 완료 상태를 로컬 스토리지에 저장
+    localStorage.setItem('matched', 'true');
+
+    // 현재 people 수를 가져와 증가시킴
+    const peopleElement = document.querySelector('.people');
+    const currentPeople = parseInt(peopleElement.textContent);
+    peopleElement.textContent = (currentPeople + 1).toString();
+
+    // 팝업을 닫음
+    closePopup();
+}
+
+
+        // 예 버튼 클릭 시 동작 설정
+        const yesButton = document.getElementById('yesButton');
+        yesButton.addEventListener('click', () => {
+            // 매칭을 수락하는 동작 추가
+            // 여기에 수락 로직을 추가하세요.
+            acceptMatch();
+        });
+
+        // 나머지 팝업 스크립트는 그대로 유지
+   
+</script>
+</body>
+</html>
+ 여기서 수정해서 알려주라
