@@ -13,3 +13,7 @@ def menu_detail(request, id, slug):
 
 def menu_list(request):
     return render(request, 'list/buy_list.html')
+
+
+# def success_view(request): #html을 보여주는 함수(여기다가 html 걸면 될듯~~)
+#     return render(request, 'gift/success.html')
