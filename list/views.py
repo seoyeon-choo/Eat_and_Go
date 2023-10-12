@@ -14,6 +14,7 @@ def menu_detail(request, id, slug):
 
 def menu_list(request):
     return render(request, 'list/buy_list.html')
+
 def review(request):
 
     return render(request, 'list/review.html')
@@ -23,6 +24,14 @@ def write_review(request):
     
     return render(request, 'list/write_review.html')
 
+def menu_cart(request):
+    
+    return render(request, 'list/menu_cart.html')
 
-# def success_view(request): #html을 보여주는 함수(여기다가 html 걸면 될듯~~)
-#     return render(request, 'gift/success.html')
+def ticket_using(request):
+    
+    return render(request, 'list/ticket_using.html')
+
+def order_done(request):
+    
+    return render(request, 'list/order_done.html')

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>Eatgo 잇고 :: 구매확인</title>
+        {% load static %}
+        <meta charset="UTF-8">
+        <meta name="viewprot" content="width=device-width, initial-scale=1.0">
+        <meta property="og:url" content="https://eatgo.co.kr">
+        <meta property="og:title" content="잇고 Eatgo">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="icon.jpg">
+        <meta property="og:description" content="학식 매칭 플랫폼">
+        <link rel="shortcut icon" href="{% static 'home/images/icon.png' %}"> 
+
+
+        <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center; /* 수평 가운데 정렬 */
+            align-items: center; /* 수직 가운데 정렬 */
+            min-height: 100vh; /* 화면 전체 높이로 설정 */
+        }
+
+        img {
+            max-width: 100%; /* 최대 너비 100%로 설정하여 이미지가 부모 컨테이너에 맞게 조절됩니다. */
+            height: auto; /* 가로세로 비율을 유지하면서 크기를 조절합니다. */
+        }
+
+        .navbar {
+            background-color: orange;
+            height: 50px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-text {
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .navbar-text a {
+            color: white; /* 텍스트 색상을 흰색으로 설정 */
+            text-decoration: none; /* 밑줄 제거 */
+        }
+
+        button {
+            background-color: orange;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #exit-button {
+            position: absolute; /* 절대 위치 설정 */
+            top: 13px; /* 위에서 13px 내림 */
+            left: 10px; /* 왼쪽에서 10px 내려감 */
+        }
+
+        #exit-button img {
+            width: 18px; /* 이미지 너비 설정 */
+            height: 18px; /* 이미지 높이 설정 */
+        }
+
+
+            #contents{
+                text-align: center;
+                margin: 0;
+                width: 100%;
+                height: fit-content;
+                display: block;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin-top: 0%;
+            }
+
+
+             /*메인 화면 컨테이너 크기*/
+            .container {
+                width: 400px; 
+                height: 30px; 
+                margin: 0 auto;
+                margin-top: 0;
+                text-align: center;
+                padding-bottom: 10px;
+                background: rgba(0,0,0,0.1);
+            }
+
+
+            #footer {
+                bottom: 0px;
+                margin-top: 10px;
+                padding-top: 15px;
+                position: fixed;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 400px;
+                height: fit-content;
+                background-color: whitesmoke;
+                text-align: right;
+            }
+
+            .ticket_img {
+                width: 100%;
+                height: auto;
+                max-width: 40px;
+                text-align: left;
+                margin-right: 200px;
+                margin-top: 10px;
+            }
+
+            .button-container {
+                display: flex;
+                justify-content: center;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                padding: 0;
+            }
+
+            .gift_btn,
+            .buy_btn {
+                width: 100%;
+                height: auto;
+                margin: 20px;
+                max-width: 150px;
+                border: none;
+                cursor: pointer;
+                background: none;
+            }
+
+            .gift_btn img,
+            .buy_btn img {
+                width: 100%;
+                height: auto;
+            }
+
+
+        </style>
+    </head>
+
+
+    <body>
+        <div id="wrap">
+
+            <!-- 상단바 -->
+    <div class="navbar">
+        <div class="navbar-text">
+           <a href="{% url 'home:home' %}">잇고</a>
+       </div>
+
+        <button id="exit-button">
+           <img src="{% static 'home/images/left-arrow.png' %}" alt="뒤로 가기">
+       </button> 
+    </div>
+   
+       <script>
+           document.getElementById("exit-button").addEventListener("click", function() {
+               window.history.back(); // 브라우저의 뒤로 가기 기능 호출
+           });
+
+       </script>
+
+
+            <!-- 메인 화면 구성 -->
+            <div id="contents">
+                <div id="container">
+                    <img src="{% static 'home/images/식권사용확인이미지.png' %}" style="width: 100%; height: auto; max-width:400px; display: block; margin-top: 0px;">
+                </div>
+            </div>
+
+    
+            <!-- footer -->
+            
+            <div id="footer">
+                <hr color="gray">
+
+                <div class="button-container">
+                    <button class="gift_btn">
+                            <a href="{% url 'list:order_done' %}">
+                            <img src="{% static 'home/images/yes_btn.png' %}">
+                        </a>
+                    </button>
+                    <button class="buy_btn">
+                        <a href="{% url 'list:menu_cart' %}">
+                            <img src="{% static 'home/images/no_btn.png' %}">
+                        </a>
+                    </button>
+                </div>
+
+                
+
+            </div>
+
+        </div> 
+
+
+    </body>
+</html>
