@@ -1,0 +1,178 @@
+
+body, html {
+    margin: 0;
+    height: fit-content;
+}
+
+.wrap {
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 100px;
+}
+
+.container_for_header {
+    position: relative;
+}
+
+p {
+    text-align: center;
+    height: fit-content;
+    padding-top: 10px;
+    margin-top: 0;
+}
+
+
+
+
+#header{
+    background-color: orange;
+    color: white;
+    text-align: center;
+    padding: 13px 0px 15px 0px; /* 위 아래 여백 설정*/
+    /* 13px 0px 15px 10px */
+    font-size: 1.5rem;
+    position: fixed;
+    top: 0; /* 화면 상단에 고정 */
+    width: 100%; /* 화면 너비만큼 헤더 확장*/
+    margin: 0;
+    list-style: none;
+    left: 0;
+    z-index: 1000;
+}
+
+#header a {
+    text-decoration: none;
+    columns: inherit;
+    color: white;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+}
+
+#contents {
+    text-align: center;
+    margin-top: 65px;
+    width: 100%;
+    height: fit-content;
+    overflow-y: auto;
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#contents hr {
+    width: 400px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    margin-left: auto;
+}
+
+
+/*드롭다운*/
+.dropdown_image {
+    width: 100%;
+    height: auto;
+    max-width: 20px;
+    display: block;
+    margin: 0 auto;
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown-button {
+    background: orange;
+    padding: 10px;
+    font-size: 15px; 
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: block;
+    float: left;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: orange;
+    color: black;
+    width: 300px;
+    height: auto;
+    padding: 0px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdwon-content a {
+    color: black;
+    padding: 100%;
+    margin: 0;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid #ddd
+}
+
+.dropdown-content a:hover {
+    background-color: #fccc8d;
+    width: 100%;
+}
+.dropdown:hover .dropdown-content {display: block;}
+.dropdwon:hover .dropdown-button {background-color: orange}
+
+.dropdown-content img {
+    width: 30%;
+    height: auto;
+}
+
+/*검색창*/
+#search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+#search-input {
+    padding: 5px;
+    width: 200px;
+    font-size: 12px;
+    border-radius: 40em;
+}
+
+#search-button {
+    padding: 5px;
+    background-color: white;
+    color: black;
+    border: solid 1px black;
+    border-radius: 2em;
+    cursor: pointer;
+    font-size: 5px;
+    margin-left: 5px;
+}
+
+/*메인 화면 컨테이너 크기*/
+.container {
+    width: 400px; 
+    height: 40px; 
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
+    background: rgba(0,0,0,0.1);
+}
+
+/*치킨마요*/
+.board img {
+    width: 100%;
+    height: auto;
+    max-width: 150px;
+    margin: 60px 20px;
+}
+
+.second-board img {
+    width: 100%;
+    height: auto;
+    max-width: 150px;
+    margin: 10px 20px;
+}
+
