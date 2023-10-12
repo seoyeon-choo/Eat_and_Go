@@ -29,6 +29,6 @@ urlpatterns = [
     #path('ticket/', include('ticket.urls')),
 ]
 
-
+# 개발 환경에서만 정적 파일 서빙 설정
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
