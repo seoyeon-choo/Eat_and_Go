@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    {% load static %}
+</head>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: orange;
+            color: white;
+            position: sticky;
+            top: 0;
+            display: flex;
+            align-items: center;
+            padding: 13px 10px;
+        }
+
+        .navbar-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 50px);
+            overflow-y: scroll;
+            padding: 10px;
+        }
+
+        .message {
+            margin: 3px;
+            padding: 6px;
+            border-radius: 8px;
+        }
+
+        .my-message {
+            background-color:#FDDBAE;
+            align-self: flex-end;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .other-message {
+            background-color: orange;
+            color: white;
+            align-self: flex-start;
+           
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            padding: 10px;
+            position: sticky;
+            bottom: 0;
+        }
+        
+        button {
+
+            background-color: orange;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #exit-button {
+            position: absolute; /* 절대 위치 설정 */
+            top: 13px; /* 위에서 13px 내림 */
+            left: 10px; /* 왼쪽에서 10px 내려감 */
+        }
+        #exit-button img {
+    width: 18px; /* 이미지 너비 설정 */
+    height: 18px; /* 이미지 높이 설정 */
+}
+#send-button {
+    padding: 8px 23px; /* 버튼 패딩을 늘림 */
+    font-size: 12px; /* 폰트 크기를 10px로 설정 */
+}
+
+
+
+    </style>
+<body>
+    <div class="navbar"style="height: 19px;">
+        <div class="navbar-buttons">
+            <a href="{% url 'matching_app:list_matching_rooms' %}">
+                <button id="exit-button"><img src="{% static 'matching_app/images/left-arrow.png' %}" alt="Back to List"></button>
+            </a>
+            <!--<button id="exit-button"><img src="left-arrow (1).png" alt="Close"></button>-->
+            <button id="match-button">선물하기</button>
+        </div>
+    </div>
+    <div>
+        <div class="chat-container" id="chat-container">
+            <p class ="other-message">덕새 : 안녕하세요!</p>
+            <p class ="other-message">덕새 : 차관앞에서 만나요</p>
+            {% for message in chat_messages %}
+            <p> </p>
+            <div class ="my-message">
+                {{ message.message }}
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    <div class="input-container">
+        <form method="post">
+            {% csrf_token %}
+            
+            <div style="display: flex; align-items: center;">
+            <textarea name="{{ form.message.name }}" cols="40" rows="3" required id="{{ form.message.id_for_label }}" placeholder="메시지 입력"></textarea>
+
+            <button type="submit" id="send-button">전송</button>
+        </form>
+    </div>
+
+</body>
+</html>

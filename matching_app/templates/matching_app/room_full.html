@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <style>
+        .navbar {
+            background-color: orange;
+            color: white;
+            position: sticky;
+            top: 0;
+            display: flex;
+            align-items: center;
+            padding: 13px 10px;
+        }
+
+        button {
+
+            background-color: orange;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .navbar-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .logo-container{
+            text-align: center;
+        }
+        .room-message {
+            background-color: #d9d9d9;
+            color: black;
+            font-size: 15px;
+            padding: 10px 10px; /* 버튼 내부 패딩 설정 */
+            text-decoration: none; /* 링크 텍스트에 밑줄 제거 */
+            border-radius: 20px;
+            display: block; /* 블록 레벨 요소로 변경하여 중앙에 배치 */
+            margin: 10px auto; /* 가운데 정렬을 위한 여백 설정 */
+            width: 200px; /* 버튼의 너비를 조정하여 중앙으로 이동 */
+            text-align: center; /* 텍스트를 가운데 정렬 */
+        }
+
+        .room-message:hover {
+            background-color: darkorange;
+            cursor: wait;
+        }
+        #exit-button {
+            margin-right: auto; /* 오른쪽으로 이동 */
+        }
+        #exit-button img {
+            width: 15px; /* 이미지 너비 설정 */
+            height: 15px; /* 이미지 높이 설정 */
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar"style="height: 19px;">
+        <div class="navbar-buttons">
+            <button id="exit-button"><img src="{% static 'matching_app/images/left-arrow (1).png' %}" alt="Back to"></button>
+            </button>
+        </div>
+    </div>
+    <div class="room-message-container" style="margin-top: 10px;">
+
+        <div class="logo-container">
+            <img src="{% static 'matching_app/images/logo.gif' %}" alt="Back to">
+        </div>
+        <p class="room-message"> 앗! 이런 방이 가득 찼어요 </p>
+    </div>
+
+</body>
+</html>

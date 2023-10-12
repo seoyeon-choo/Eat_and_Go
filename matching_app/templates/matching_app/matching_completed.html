@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matching Completed</title>
+
+    {% load static %}
+
+    <style>
+        html, body { 
+            margin: 0; /* 여백 없앰 */
+            padding: 0; 
+            height: 100%; 
+        }
+
+        .header {
+            background-color: orange; /* 오렌지색 배경 */
+            color: white; /* 텍스트 색상 */
+            text-align: center; /* 텍스트 가운데 정렬 */
+            padding: 13px 0; /* 위아래 여백 설정 */
+            font-size: 17px; /* 글꼴 크기 설정 */
+            width: 100%; /* 화면 너비만큼 헤더 확장 */
+            display: flex; /* 플렉스박스 사용 */
+            justify-content: center; /* 수평 가운데 정렬 */
+            align-items: center; /* 수직 가운데 정렬 */
+        }
+
+        .back-button {
+            position: absolute; /* 절대 위치 설정 */
+            top: 13px; /* 위에서 13px 내림 */
+            left: 10px; /* 왼쪽에서 10px 내려감 */
+        }
+
+        .content {
+            text-align: center;
+            margin-top: 50px; /* 상단 여백 추가 */
+        }
+
+        .img {
+            width: 240px; /* 이미지 너비 설정 */
+            height: 240px; /* 이미지 높이 설정 */
+            margin-top: 60px;
+        }
+
+        .button-container {
+            
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 40px;
+        }
+
+        .button-container a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: orange;
+    color: white;
+    font-size: 14px; /* 버튼 텍스트 크기 설정 */
+    text-decoration: none; /* 링크 텍스트에 밑줄 제거 */
+    border-radius: 60px;
+    margin: 10px; /* 간격을 설정하고 중앙 정렬 유지 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    transition: background-color 0.3s; /* 배경 색상 변경 애니메이션 추가 */
+}
+
+.button-container a:hover {
+    background-color: rgb(253, 208, 152); /* 마우스 호버 시 배경색 변경 */
+    cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a class="back-button" href="{% url 'matching_app:list_matching_rooms' %}">
+            <img src="{% static 'matching_app/images/left-arrow.png' %}" alt="Back" width="18" height="18">
+        </a>
+        <strong>잇GO 매칭</strong>
+    </div>
+    <div class="content">
+        <img src="{% static 'matching_app/images/logo.gif' %}" class="img" alt="잇GO 이미지">
+       
+        <h2>잇GO 매칭이 완료되었습니다.</h2>
+        <div style="margin-top: 20px;"></div>
+        
+        <div class="button-container">
+            <a class="button" href="{% url 'matching_app:show_map' matching_room.id %}">지도 보기</a>
+            <a class="button" href="{% url 'matching_app:chat' matching_room.id %}">채팅하기</a>
+        </div>
+        
+    </div>
+</body>
+</html>

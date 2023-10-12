@@ -42,8 +42,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
 
+    "leaflet",
+    "matching_app",
+
     'users',
-    'matching',
     'list',
     'gift',
     'cart',
@@ -149,3 +151,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Specify the directory where collected static files should be stored
+STATIC_ROOT = BASE_DIR / "static_root"
+
+# Additional
+#GDAL_LIBRARY_PATH = '/usr/lib/libgdal.so'  # Replace with the actual path to libgdal.so on your system
+GDAL_LIBRARY_PATH = '/opt/homebrew/Cellar/gdal/3.7.2_1/lib/libgdal.dylib'
+GEOS_LIBRARY_PATH = '/opt/homebrew/Cellar/geos/3.12.0/lib/libgeos_c.dylib'
