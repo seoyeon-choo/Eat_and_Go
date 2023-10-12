@@ -1,7 +1,6 @@
 from twilio.rest import Client
 from rest_framework import viewsets, status
 from .models import Gift, User, Code
-from django.contrib import messages
 from django.shortcuts import render, redirect
 from .serializers import GiftSerializer
 
@@ -14,6 +13,8 @@ import qrcode
 from io import BytesIO
 import base64
 from twilio.rest import Client
+import json, os
+from django.conf import settings
 
 def create_gift(request):
     if request.method == "POST":
@@ -51,24 +52,29 @@ def create_gift(request):
         qr_img_base64 = base64.b64encode(qr_img.getvalue()).decode('utf-8')
 
         # 이미지 파일을 저장
-        image_filename = 'qr_code.png'  # 이미지 파일 이름
+        image_filename = os.path.join(settings.STATIC_ROOT, f'qr_code_{gift.id}.png')  # 이미지 파일 이름
         with open(image_filename, 'wb') as qr_file:
             qr_file.write(qr_img.getvalue())
 
         # 이미지 파일의 URL을 생성
-        image_url = f'http://127.0.0.1:8000/gift/send/qr_code.png'  # 이미지 파일의 공개 URL을 사용
+        image_url = 'https://storage.googleapis.com/gift_send/qr_code.png'  # 이미지 파일의 공개 URL을 사용/qr_code.png
+
+        #http://127.0.0.1:8000/gift/send/static/qr_code_{gift.id}.png
 
         # Gift 객체의 check 필드를 확인하여 'N'일 경우에만 Twilio를 통해 MMS를 보냅니다.
         if gift.check == 'N':
             # Twilio 클라이언트 초기화
-            account_sid = 'AC60198e376a9ba559dbcd8290407c8646'  # Twilio 계정 SID
-            auth_token = '22bc909111d8e13d3d12ed34c34041f7'    # Twilio 인증 토큰
+            with open('secret.json') as secret_file:
+                secrets = json.load(secret_file)
+
+            account_sid = secrets["TWILIO_ACCOUNT_SID"]
+            auth_token = secrets["TWILIO_AUTH_TOKEN"]
             client = Client(account_sid, auth_token)
 
             # QR 코드 이미지를 MMS로 전송
             message = client.messages.create(
-                body=f"Gift ID: {gift.id}\nGiver: {gift.giver}\nMessage: {gift.message}",
-                media_url=['http://127.0.0.1:8000/gift/send/qr_code.png'],  # 이미지 URL로 첨부[image_url]
+                body=f"식권 {quantity}장 선물이 도착했습니다!\nGift ID: {gift.id}\n보낸 사람: {gift.giver}\n선물메시지: {gift.message}",
+                media_url=[image_url],  # 이미지 URL로 첨부[image_url]
                 from_='+14582415262',  # Twilio 전화 번호
                 to='+8201056068772'  # 수신자 전화 번호
             )
